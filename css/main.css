@@ -6,11 +6,3 @@ body {
     background-image: url('../img/luz.jpeg');
     background-size: cover;
 }
-
-h1 {
-    font-size: 125px;
-    font-family: sans-serif;
-    color: white;
-    text-align: center;
-    text-shadow: 5px 5px #000000;
-}
