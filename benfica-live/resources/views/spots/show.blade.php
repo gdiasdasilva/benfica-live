@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('content')
+
 <div class="row">
     <div class="col-md-12">
         <h2 class="display-4">{{ $spot->name }}</h2>
@@ -8,3 +10,5 @@
         <p>{{ $spot->latitude }}, {{ $spot->longitude }}</p>
     </div>
 </div>
+
+@endsection
