@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Spot;
 
 class HomeController extends Controller
 {
@@ -14,6 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $recent_spots = Spot::orderBy('created_at', 'desc')->take(3)->get();
+        return view('welcome')->with(compact('recent_spots'));
     }
 }

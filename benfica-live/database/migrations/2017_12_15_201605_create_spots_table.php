@@ -17,8 +17,10 @@ class CreateSpotsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('address');
+            $table->string('city');
             $table->string('latitude');
             $table->string('longitude');
+            $table->string('tripadvisor_url');
             $table->integer('country_id')->unsigned();
             $table->foreign('country_id')->references('id')->on('countries');
             $table->timestamps();
