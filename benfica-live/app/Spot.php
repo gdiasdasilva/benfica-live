@@ -10,4 +10,9 @@ class Spot extends Model
     {
         return '/spots/' . $this->id;
     }
+
+    public function country()
+    {
+        return $this->belongsTo('App\Country');
+    }
 }

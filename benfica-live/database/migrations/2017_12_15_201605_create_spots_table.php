@@ -19,7 +19,8 @@ class CreateSpotsTable extends Migration
             $table->string('address');
             $table->string('latitude');
             $table->string('longitude');
-            $table->integer('country_id');
+            $table->integer('country_id')->unsigned();
+            $table->foreign('country_id')->references('id')->on('countries');
             $table->timestamps();
         });
     }
