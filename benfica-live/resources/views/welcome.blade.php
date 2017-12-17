@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="row">
     <div class="col-md-12">
         <div class="">
@@ -12,7 +13,10 @@
             </ul>
         </div>
         <hr>
-        <button type="button" name="button" class="btn btn-danger">Submit a spot</button>
+        <a href="/spots/new">
+            <button type="button" name="button" class="btn btn-danger">Submit a spot</button>
+        </a>
     </div>
 </div>
+
 @endsection
