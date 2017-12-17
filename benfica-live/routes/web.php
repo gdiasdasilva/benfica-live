@@ -15,4 +15,5 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index');
 Route::get('/spots', 'SpotsController@index');
+Route::get('/spots/new', 'SpotsController@create');
 Route::get('/spots/{spot}', 'SpotsController@show');

@@ -16,11 +16,13 @@ class CreateSpotsTable extends Migration
         Schema::create('spots', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->string('city');
-            $table->string('latitude');
-            $table->string('longitude');
-            $table->string('tripadvisor_url');
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('tripadvisor_url')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone_number')->nullable();
             $table->integer('country_id')->unsigned();
             $table->foreign('country_id')->references('id')->on('countries');
             $table->timestamps();

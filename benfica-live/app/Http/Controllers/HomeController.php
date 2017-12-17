@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Spot;
+use App\Country;
 
 class HomeController extends Controller
 {

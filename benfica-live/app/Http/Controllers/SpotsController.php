@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Spot;
+use DB;
 use Illuminate\Http\Request;
 
 class SpotsController extends Controller
@@ -25,7 +26,15 @@ class SpotsController extends Controller
      */
     public function create()
     {
-        //
+        $countries_list = DB::table('countries')
+            ->select('id', 'name')
+            ->where('continent_id', 2)
+            ->orWhere('continent_id', 6)
+            ->orWhere('continent_id', 7)
+            ->orderBy('name', 'asc')
+            ->get();
+
+        return view('spots.create')->with(compact('countries_list'));
     }
 
     /**
