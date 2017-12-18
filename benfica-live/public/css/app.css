@@ -9191,6 +9191,10 @@ a.text-dark:hover {
   visibility: hidden !important;
 }
 
+body {
+  padding-bottom: 30px;
+}
+
 nav.navbar {
   margin-bottom: 25px;
 }
