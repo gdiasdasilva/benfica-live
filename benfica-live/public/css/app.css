@@ -9191,3 +9191,21 @@ a.text-dark:hover {
   visibility: hidden !important;
 }
 
+nav.navbar {
+  margin-bottom: 25px;
+}
+
+.welcome-page h2 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.welcome-page .benfica-header-logo {
+  text-align: center;
+}
+
+.welcome-page .benfica-header-logo img {
+  width: 150px;
+  margin-bottom: 20px;
+}
+

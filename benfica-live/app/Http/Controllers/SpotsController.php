@@ -15,7 +15,11 @@ class SpotsController extends Controller
      */
     public function index()
     {
-        $spots = Spot::all();
+        $spots = Spot::with(array('country' => function($query)
+        {
+            $query->orderBy('name', 'ASC');
+        }))->get();
+
         return view('spots.index')->with(compact('spots'));
     }
 
