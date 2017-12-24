@@ -1,5 +1,5 @@
 body {
-    padding-bottom: 30px;
+    padding-bottom: 50px;
 }
 
 nav {
@@ -22,5 +22,23 @@ nav {
             width: 150px;
             margin-bottom: 20px;
         }
+    }
+
+    a.submit-spot-button {
+        cursor: pointer;
+    }
+
+    .last-submissions {
+        margin-bottom: 30px;
+    }
+
+    @media(min-width: 765px) {
+        .last-submissions .last-submission-entry:not(:last-child) {
+            margin-bottom: 30px;
+        }
+    }
+
+    .submit-spot-container {
+        text-align: center;
     }
 }
