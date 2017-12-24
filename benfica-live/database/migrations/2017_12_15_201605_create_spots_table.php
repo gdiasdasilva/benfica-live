@@ -23,6 +23,7 @@ class CreateSpotsTable extends Migration
             $table->string('tripadvisor_url')->nullable();
             $table->string('email')->nullable();
             $table->string('phone_number')->nullable();
+            $table->boolean('is_approved')->default(false);
             $table->integer('country_id')->unsigned();
             $table->foreign('country_id')->references('id')->on('countries');
             $table->timestamps();

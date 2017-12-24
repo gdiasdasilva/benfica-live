@@ -15,12 +15,21 @@ class SpotsController extends Controller
      */
     public function index()
     {
-        $spots = Spot::with(array('country' => function($query)
-        {
-            $query->orderBy('name', 'ASC');
-        }))->get();
+        // $spots = Spot::with(array('country' => function($query)
+        // {
+        //     $query->orderBy('name', 'ASC');
+        // }))->get();
 
-        return view('spots.index')->with(compact('spots'));
+        $spots = Spot::all();
+        $spotsByCountry = [];
+
+        foreach ($spots as $spot) {
+            $spotsByCountry[$spot->country->name][] = $spot;
+        }
+
+        ksort($spotsByCountry);
+
+        return view('spots.index')->with(compact('spotsByCountry'));
     }
 
     /**
@@ -49,7 +58,29 @@ class SpotsController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request = $request->only([
+            'name',
+            'address',
+            'email',
+            'phone_number',
+            'tripadvisor_url',
+            'city',
+            'country_id'
+        ]);
+
+        $name = $request['name'];
+
+        Spot::create([
+            'name' => $request['name'],
+            'address' => $request['address'],
+            'email' => $request['email'],
+            'phone_number' => $request['phone_number'],
+            'tripadvisor_url' => $request['tripadvisor_url'],
+            'city' => $request['city'],
+            'country_id' => $request['country_id']
+        ]);
+
+         return redirect('/')->with('success', "Spot $name submetido com sucesso. Será publicado após ser revisto e aprovado. Obrigado!");
     }
 
     /**

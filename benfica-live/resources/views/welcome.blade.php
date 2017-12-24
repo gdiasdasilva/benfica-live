@@ -3,6 +3,12 @@
 @section('content')
 
 <div class="welcome-page">
+    @if (session('success'))
+        <div class="alert alert-success" role="alert">
+          {{ session('success') }}
+        </div>
+    @endif
+
     <div class="row">
         <div class="col-md-8 mx-auto">
             <div class="benfica-header-logo">

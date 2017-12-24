@@ -27,20 +27,20 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Home</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Início</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/spots">Spots</a>
+                        <a class="nav-link" href="/spots">Lista de Spots</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/spots/new">New spot</a>
+                        <a class="nav-link" href="/spots/new">Submeter um Spot</a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
+                {{-- <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                </form> --}}
             </div>
         </nav>
         <div class="container">
@@ -49,6 +49,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 </body>
 </html>
