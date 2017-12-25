@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-md-12">
         <h2 class="display-4">{{ $spot->name }}</h2>
-        <p class="lead">{{ $spot->city }}, {{ $spot->country->name }}</p>
+        <p class="lead">{{ $spot->city }}, {{ $spot->country->name_pt }}</p>
         <p>{!! nl2br(e($spot->address)) !!}</p>
         <p>{{ $spot->email }}</p>
         <p>{{ $spot->phone_number }}</p>

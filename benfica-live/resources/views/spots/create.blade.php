@@ -43,7 +43,7 @@
                                 <option selected>Escolher...</option>
                                 @foreach ($countries_list as $country)
                                     <option value="{{ $country->id }}">
-                                        {{ $country->name }}
+                                        {{ $country->name_pt }}
                                     </option>
                                 @endforeach
                             </select>

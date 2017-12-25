@@ -20,7 +20,7 @@
                     <div id="collapse{{ $spot->id }}" class="collapse" role="tabpanel" aria-labelledby="heading{{ $spot->id }}" data-parent="#accordion">
                         <div class="card-body">
                             <p>{{ $spot->address }}</p>
-                            <p>{{ $spot->city }}, {{ $spot->country->name }}</p>
+                            <p>{{ $spot->city }}, {{ $spot->country->name_pt }}</p>
                         </div>
                     </div>
                 </div>

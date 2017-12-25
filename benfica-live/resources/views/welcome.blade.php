@@ -28,7 +28,7 @@
                     <img class="card-img-top" src="{{ asset('images/placeholder-restaurante.jpeg') }}" alt="Card image cap">
                     <div class="card-body">
                         <h4 class="card-title">{{ $spot->name }}</h4>
-                        <p class="card-text">{{ $spot->city }}, {{ $spot->country->name }}</p>
+                        <p class="card-text">{{ $spot->city }}, {{ $spot->country->name_pt }}</p>
                         <a href="{{ $spot->path() }}" class="btn btn-danger">Ver mais</a>
                     </div>
                 </div>

@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(CountriesTableSeeder::class);
+        $this->call(CountriesWithPTTableSeeder::class);
         $this->call(SpotsTableSeeder::class);
     }
 }

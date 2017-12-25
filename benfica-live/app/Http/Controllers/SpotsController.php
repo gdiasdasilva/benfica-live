@@ -15,16 +15,11 @@ class SpotsController extends Controller
      */
     public function index()
     {
-        // $spots = Spot::with(array('country' => function($query)
-        // {
-        //     $query->orderBy('name', 'ASC');
-        // }))->get();
-
         $spots = Spot::all();
         $spotsByCountry = [];
 
         foreach ($spots as $spot) {
-            $spotsByCountry[$spot->country->name][] = $spot;
+            $spotsByCountry[$spot->country->name_pt][] = $spot;
         }
 
         ksort($spotsByCountry);
@@ -40,11 +35,11 @@ class SpotsController extends Controller
     public function create()
     {
         $countries_list = DB::table('countries')
-            ->select('id', 'name')
+            ->select('id', 'name_pt')
             ->where('continent_id', 2)
             ->orWhere('continent_id', 6)
             ->orWhere('continent_id', 7)
-            ->orderBy('name', 'asc')
+            ->orderBy('name_pt', 'asc')
             ->get();
 
         return view('spots.create')->with(compact('countries_list'));

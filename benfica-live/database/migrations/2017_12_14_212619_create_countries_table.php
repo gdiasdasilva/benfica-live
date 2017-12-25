@@ -17,6 +17,7 @@ class CreateCountriesTable extends Migration
             $table->increments('id');
             $table->integer('continent_id');
             $table->string('name');
+            $table->string('name_pt');
             $table->string('full_name');
             $table->string('code');
             $table->string('emoji')->nullable();
