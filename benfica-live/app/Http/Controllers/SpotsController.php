@@ -67,6 +67,7 @@ class SpotsController extends Controller
 
         Spot::create([
             'name' => $request['name'],
+            'slug' => str_slug($request['name']),
             'address' => $request['address'],
             'email' => $request['email'],
             'phone_number' => $request['phone_number'],
@@ -84,9 +85,9 @@ class SpotsController extends Controller
      * @param  \App\Spot  $spot
      * @return \Illuminate\Http\Response
      */
-    public function show(Spot $spot)
+    public function show($slug)
     {
-        $spot = Spot::findOrFail($spot->id);
+        $spot = Spot::where('slug', $slug)->first();
         return view('spots.show')->with(compact('spot'));
     }
 

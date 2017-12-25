@@ -17,5 +17,5 @@ Route::get('/', 'HomeController@index');
 Route::get('/spots', 'SpotsController@index');
 Route::post('/spots', 'SpotsController@store');
 Route::get('/spots/new', 'SpotsController@create');
-Route::get('/spots/{spot}', 'SpotsController@show')
+Route::get('/spots/{slug}', 'SpotsController@show')
 ;

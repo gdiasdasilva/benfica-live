@@ -21,6 +21,7 @@
                         <div class="card-body">
                             <p>{{ $spot->address }}</p>
                             <p>{{ $spot->city }}, {{ $spot->country->name_pt }}</p>
+                            <a class="btn btn-danger" href="{{ $spot->path() }}">Ver mais</a>
                         </div>
                     </div>
                 </div>

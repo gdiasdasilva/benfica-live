@@ -16,6 +16,7 @@ class CreateSpotsTable extends Migration
         Schema::create('spots', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('slug')->unique();
             $table->string('address')->nullable();
             $table->string('city');
             $table->string('latitude')->nullable();

@@ -8,6 +8,7 @@ class Spot extends Model
 {
     protected $fillable = [
         'name',
+        'slug',
         'address',
         'email',
         'phone_number',
@@ -16,9 +17,14 @@ class Spot extends Model
         'country_id'
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function path()
     {
-        return '/spots/' . $this->id;
+        return '/spots/' . $this->slug;
     }
 
     public function country()
