@@ -19,6 +19,7 @@ class CreateSpotsTable extends Migration
             $table->string('slug')->unique();
             $table->string('address')->nullable();
             $table->string('city');
+            $table->string('image')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('tripadvisor_url')->nullable();

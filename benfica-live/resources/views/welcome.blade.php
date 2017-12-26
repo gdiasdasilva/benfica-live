@@ -25,7 +25,7 @@
         @foreach ($recent_spots as $spot)
             <div class="col-md-4 last-submission-entry">
                 <div class="card">
-                    <img class="card-img-top" src="{{ asset('images/placeholder-restaurante.jpeg') }}" alt="Card image cap">
+                    <img class="card-img-top" src="{{ asset('storage/'.$spot->image) }}" alt="Card image cap">
                     <div class="card-body">
                         <h4 class="card-title">{{ $spot->name }}</h4>
                         <p class="card-text">{{ $spot->city }}, {{ $spot->country->name_pt }}</p>

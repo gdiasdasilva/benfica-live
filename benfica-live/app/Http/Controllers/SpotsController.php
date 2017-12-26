@@ -53,6 +53,13 @@ class SpotsController extends Controller
      */
     public function store(Request $request)
     {
+        $image = $request->file('spot_image');
+        $imagePath = null;
+
+        if ($image) {
+            $imagePath = $image->store('spots');
+        }
+
         $request = $request->only([
             'name',
             'address',
@@ -60,7 +67,7 @@ class SpotsController extends Controller
             'phone_number',
             'tripadvisor_url',
             'city',
-            'country_id'
+            'country_id',
         ]);
 
         $name = $request['name'];
@@ -73,7 +80,8 @@ class SpotsController extends Controller
             'phone_number' => $request['phone_number'],
             'tripadvisor_url' => $request['tripadvisor_url'],
             'city' => $request['city'],
-            'country_id' => $request['country_id']
+            'country_id' => $request['country_id'],
+            'image' => $imagePath
         ]);
 
          return redirect('/')->with('success', "Spot $name submetido com sucesso. Será publicado após ser revisto e aprovado. Obrigado!");

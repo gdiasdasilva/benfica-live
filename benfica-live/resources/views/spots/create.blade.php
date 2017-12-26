@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <h2>Submeter um Spot!</h2>
 
-            <form class="" action="/spots" method="POST">
+            <form class="" action="/spots" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <div class="form-group">
@@ -48,6 +48,10 @@
                                 @endforeach
                             </select>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="formSpotImage">Imagem</label>
+                        <input type="file" class="form-control-file" id="formSpotImage" name="spot_image">
                     </div>
                     <button type="submit" class="btn btn-danger">Submeter</button>
             </form>
