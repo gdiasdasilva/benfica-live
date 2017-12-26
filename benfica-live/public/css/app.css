@@ -9250,3 +9250,7 @@ nav.navbar li.nav-item a.nav-link:hover {
   margin-bottom: 30px;
 }
 
+.spot-detail img {
+  border-radius: 10px;
+}
+

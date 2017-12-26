@@ -5,14 +5,25 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+            @if ($errors->any())
+                <div class="alert alert-danger" role="alert">
+                    <h5>Erros na submissão:</h5>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <h2>Submeter um Spot!</h2>
 
             <form class="" action="/spots" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <div class="form-group">
-                        <label class="col-form-label" for="formSpotName">Nome do Spot</label>
-                        <input type="text" class="form-control" id="formSpotName" placeholder="Nome do Spot" name="name" required>
+                        <label class="col-form-label" for="formSpotName">Nome do Spot *</label>
+                        <input type="text" class="form-control" id="formSpotName" placeholder="Nome do Spot*" name="name" required>
                     </div>
                     <div class="form-group">
                         <label class="col-form-label" for="formSpotAddress">Morada</label>
@@ -34,12 +45,12 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label class="col-form-label" for="formSpotCity">Cidade</label>
-                            <input type="text" class="form-control" id="formSpotCity" placeholder="Cidade" name="city">
+                            <label class="col-form-label" for="formSpotCity">Cidade *</label>
+                            <input type="text" class="form-control" id="formSpotCity" placeholder="Cidade *" name="city" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="formSpotCountry">País</label>
-                            <select id="formSpotCountry" class="form-control" name="country_id">
+                            <select id="formSpotCountry" class="form-control" name="country_id" required>
                                 <option selected>Escolher...</option>
                                 @foreach ($countries_list as $country)
                                     <option value="{{ $country->id }}">

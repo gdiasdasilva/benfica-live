@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Spot;
 use DB;
 use Illuminate\Http\Request;
+use Image;
+use Storage;
 
 class SpotsController extends Controller
 {
@@ -53,11 +55,23 @@ class SpotsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max:60',
+            'city' => 'required|max:35',
+            'email' => 'email|nullable',
+            'tripadvisor_url' => 'url|nullable',
+            'country_id' => 'required|exists:countries,id',
+            'spot_image' => 'image|nullable'
+        ]);
+
         $image = $request->file('spot_image');
         $imagePath = null;
 
         if ($image) {
-            $imagePath = $image->store('spots');
+            $imagePath = $image->hashName('spots');
+            $img = Image::make($image);
+            $img->fit(350, 240);
+            Storage::put($imagePath, (string) $img->encode());
         }
 
         $request = $request->only([
