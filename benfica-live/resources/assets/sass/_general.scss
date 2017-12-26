@@ -1,3 +1,18 @@
+.btn.btn-danger-inverted {
+    color: $materialize-red;
+    background-color: #fff;
+    border-color: $materialize-red;
+
+    &:hover {
+        background-color: $materialize-red;
+        color: #fff;
+    }
+}
+
+.btn.btn-danger {
+    background-color: $materialize-red;
+}
+
 body {
     padding-bottom: 50px;
 }
@@ -5,7 +20,7 @@ body {
 nav {
     &.navbar {
         margin-bottom: 35px;
-        background-color: #c62828 !important;
+        background-color: $materialize-red !important;
         box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
 
         a.navbar-brand {
@@ -45,16 +60,28 @@ nav {
     }
 
     a.submit-spot-button {
-        cursor: pointer;
+        button {
+            cursor: pointer;
+        }
     }
 
     .last-submissions {
         margin-bottom: 30px;
+
+        .last-submission-entry {
+            .card-body {
+                a {
+                    display: block;
+                    width: fit-content;
+                    margin: 0 auto;
+                }
+            }
+        }
     }
 
-    @media(min-width: 765px) {
+    @media(max-width: 765px) {
         .last-submissions .last-submission-entry:not(:last-child) {
-            margin-bottom: 30px;
+            margin-bottom: 30px !important;
         }
     }
 

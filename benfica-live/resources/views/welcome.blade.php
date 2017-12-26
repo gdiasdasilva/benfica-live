@@ -27,11 +27,13 @@
                 <div class="card">
                     @if ($spot->image)
                         <img class="card-img-top" src="{{ asset('storage/'.$spot->image) }}" alt="Imagem do spot">
+                    @else
+                        <img class="card-img-top" src="images/placeholder-restaurante.jpeg" alt="Imagem do spot">
                     @endif
                     <div class="card-body">
                         <h4 class="card-title">{{ $spot->name }}</h4>
                         <p class="card-text">{{ $spot->city }}, {{ $spot->country->name_pt }}</p>
-                        <a href="{{ $spot->path() }}" class="btn btn-danger">Ver mais</a>
+                        <a href="{{ $spot->path() }}" class="btn btn-sm btn-danger-inverted">Ver mais</a>
                     </div>
                 </div>
             </div>
@@ -41,7 +43,7 @@
     <div class="row">
         <div class="col-md-12 submit-spot-container">
             <a href="/spots/new" class="submit-spot-button">
-                <button type="button" name="button" class="btn btn-primary">Submeter um spot</button>
+                <button type="button" name="button" class="btn btn-lg btn-danger">Submeter um spot</button>
             </a>
         </div>
     </div>

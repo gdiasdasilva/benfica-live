@@ -9191,6 +9191,21 @@ a.text-dark:hover {
   visibility: hidden !important;
 }
 
+.btn.btn-danger-inverted {
+  color: #c62828;
+  background-color: #fff;
+  border-color: #c62828;
+}
+
+.btn.btn-danger-inverted:hover {
+  background-color: #c62828;
+  color: #fff;
+}
+
+.btn.btn-danger {
+  background-color: #c62828;
+}
+
 body {
   padding-bottom: 50px;
 }
@@ -9228,7 +9243,7 @@ nav.navbar li.nav-item a.nav-link:hover {
   margin-bottom: 20px;
 }
 
-.welcome-page a.submit-spot-button {
+.welcome-page a.submit-spot-button button {
   cursor: pointer;
 }
 
@@ -9236,9 +9251,17 @@ nav.navbar li.nav-item a.nav-link:hover {
   margin-bottom: 30px;
 }
 
-@media (min-width: 765px) {
+.welcome-page .last-submissions .last-submission-entry .card-body a {
+  display: block;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+@media (max-width: 765px) {
   .welcome-page .last-submissions .last-submission-entry:not(:last-child) {
-    margin-bottom: 30px;
+    margin-bottom: 30px !important;
   }
 }
 
