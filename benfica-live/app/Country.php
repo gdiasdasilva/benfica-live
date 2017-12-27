@@ -10,4 +10,9 @@ class Country extends Model
     {
         return $this->hasMany(Spot::class);
     }
+
+    public function path()
+    {
+        return '/countries/' . $this->id;
+    }
 }

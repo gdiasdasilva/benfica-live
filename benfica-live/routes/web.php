@@ -12,10 +12,16 @@
 */
 
 Auth::routes();
-
 Route::get('/', 'HomeController@index');
+
+/* Spots */
+
 Route::get('/spots', 'SpotsController@index');
 Route::post('/spots', 'SpotsController@store');
 Route::get('/spots/new', 'SpotsController@create');
-Route::get('/spots/{slug}', 'SpotsController@show')
-;
+Route::get('/spots/{slug}', 'SpotsController@show');
+
+/* Countries */
+
+Route::get('/countries', 'CountriesController@index');
+Route::get('/countries/{countryId}', 'CountriesController@show');

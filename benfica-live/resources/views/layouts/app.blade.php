@@ -31,6 +31,9 @@
                         <a class="nav-link" href="/spots">Lista de Spots</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/countries">Lista de Países</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/spots/new">Submeter um Spot</a>
                     </li>
                 </ul>
