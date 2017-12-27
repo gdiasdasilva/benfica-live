@@ -34,12 +34,30 @@
                         <a class="nav-link" href="/countries">Países</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/contacts">Contactos</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/spots/new">Submeter um Spot</a>
                     </li>
                 </ul>
             </div>
         </nav>
         <div class="container">
+            @if (session('success'))
+                <div class="alert alert-success" role="alert">
+                  {{ session('success') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger" role="alert">
+                    <h5>Erros na submissão:</h5>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             @yield('content')
         </div>
     </div>

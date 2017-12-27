@@ -5,17 +5,6 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            @if ($errors->any())
-                <div class="alert alert-danger" role="alert">
-                    <h5>Erros na submissão:</h5>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
             <h2>Submeter um Spot!</h2>
 
             <form class="" action="/spots" method="POST" enctype="multipart/form-data">

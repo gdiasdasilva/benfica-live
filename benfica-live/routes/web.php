@@ -24,4 +24,9 @@ Route::get('/spots/{slug}', 'SpotsController@show');
 /* Countries */
 
 Route::get('/countries', 'CountriesController@index');
-Route::get('/countries/{countryId}', 'CountriesController@show');
+Route::get('/countries/{countrySlug}', 'CountriesController@show');
+
+/* Contacts */
+
+Route::get('/contacts', 'ContactController@show');
+Route::post('/contacts', 'ContactController@store');
