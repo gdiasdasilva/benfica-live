@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group">
                     <label class="col-form-label" for="formContactEmail">E-mail *</label>
-                    <input type="text" class="form-control" id="formContactEmail" placeholder="E-mail" name="email" required>
+                    <input type="email" class="form-control" id="formContactEmail" placeholder="E-mail" name="email" required>
                 </div>
                 <div class="form-group">
                     <label class="col-form-label" for="formContactMessage">Mensagem *</label>
