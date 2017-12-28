@@ -23,10 +23,11 @@ Route::get('/spots/{slug}', 'SpotsController@show');
 
 /* Countries */
 
-Route::get('/countries', 'CountriesController@index');
-Route::get('/countries/{countrySlug}', 'CountriesController@show');
+Route::get('/paises', 'CountriesController@index');
+Route::get('/paises/{countrySlug}/{spotSlug}', 'SpotsController@show');
+Route::get('/paises/{countrySlug}', 'CountriesController@show');
 
 /* Contacts */
 
-Route::get('/contacts', 'ContactController@show');
-Route::post('/contacts', 'ContactController@store');
+Route::get('/contactos', 'ContactController@show');
+Route::post('/contactos', 'ContactController@store');

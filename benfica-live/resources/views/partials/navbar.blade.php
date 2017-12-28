@@ -7,10 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/countries">Spots</a>
+                <a class="nav-link" href="/paises">Spots</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/contacts">Contactos</a>
+                <a class="nav-link" href="/contactos">Contactos</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link btn btn-danger-white-border" href="/spots/new">Submeter um Spot</a>

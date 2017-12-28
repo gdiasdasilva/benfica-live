@@ -13,6 +13,11 @@ class Country extends Model
 
     public function path()
     {
-        return '/countries/' . $this->id;
+        return '/paises/' . $this->slug_pt;
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug_pt';
     }
 }

@@ -26,7 +26,7 @@ class Spot extends Model
 
     public function path()
     {
-        return '/spots/' . $this->slug;
+        return '/paises/' . $this->country->slug_pt . '/' . $this->slug;
     }
 
     public function country()

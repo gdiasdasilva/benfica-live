@@ -118,9 +118,9 @@ class SpotsController extends Controller
      * @param  \App\Spot  $spot
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($countrySlug, $spotSlug)
     {
-        $spot = Spot::where('slug', $slug)->first();
+        $spot = Spot::where('slug', $spotSlug)->first();
         return view('spots.show')->with(compact('spot'));
     }
 

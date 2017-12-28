@@ -13,9 +13,9 @@ class CountriesController extends Controller
         return view('countries.index', compact('countries'));
     }
 
-    public function show($countryId)
+    public function show($countrySlug)
     {
-        $country = Country::findOrFail($countryId);
+        $country = Country::where('slug_pt', $countrySlug)->first();
         return view('countries.show', compact('country'));
     }
 }
