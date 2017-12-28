@@ -31,7 +31,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 mx-auto image-container">
-                    <img src="images/renders/equipa.png" alt="">
+                    <img src="images/renders/equipa.png" alt="Render da equipa">
                     <h3>
                         <strong>A página que procuras não foi encontrada!</strong>
                     </h3>

@@ -15,7 +15,8 @@ class Spot extends Model
         'tripadvisor_url',
         'city',
         'country_id',
-        'image'
+        'image',
+        'thumbnail_image'
     ];
 
     public function getRouteKeyName()

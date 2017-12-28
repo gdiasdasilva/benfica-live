@@ -9285,7 +9285,23 @@ nav.navbar li.nav-item a.nav-link:hover {
   margin-bottom: 30px;
 }
 
-.spot-detail img {
-  border-radius: 10px;
+@media (max-width: 765px) {
+  .spot-detail .image-map-container {
+    height: 450px;
+  }
+}
+
+.spot-detail .image-map-container .render-placeholder-image {
+  text-align: center;
+}
+
+.spot-detail .image-map-container .render-placeholder-image img {
+  max-width: 90%;
+}
+
+.spot-detail .image-map-container .placeholder-image {
+  height: 100%;
+  background-size: cover;
+  border-radius: 5px;
 }
 

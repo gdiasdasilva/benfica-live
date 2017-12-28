@@ -66,12 +66,22 @@ class SpotsController extends Controller
 
         $image = $request->file('spot_image');
         $imagePath = null;
+        $thumbnailPath = null;
 
         if ($image) {
             $imagePath = $image->hashName('spots');
+            $thumbnailPath = $image->hashName('spots');
+            $thumbnailPathExploded = explode('.',$thumbnailPath);
+            $thumbnailPath = $thumbnailPathExploded[0] . '-thumbnail.' . $thumbnailPathExploded[1];
+
             $img = Image::make($image);
             $img->fit(350, 240);
+
+            $imgThumbnail = Image::make($image);
+            $imgThumbnail->fit(500, 450);
+
             Storage::put($imagePath, (string) $img->encode());
+            Storage::put($thumbnailPath, (string) $imgThumbnail->encode());
         }
 
         $request = $request->only([
@@ -95,7 +105,8 @@ class SpotsController extends Controller
             'tripadvisor_url' => $request['tripadvisor_url'],
             'city' => $request['city'],
             'country_id' => $request['country_id'],
-            'image' => $imagePath
+            'image' => $imagePath,
+            'thumbnail_image' => $thumbnailPath
         ]);
 
          return redirect('/')->with('success', "Spot $name submetido com sucesso. Será publicado após ser revisto e aprovado. Obrigado!");

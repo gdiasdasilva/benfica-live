@@ -1,5 +1,22 @@
 .spot-detail {
-    img {
-        border-radius: 10px;
+    @media(max-width: 765px) {
+        .image-map-container {
+            height: 450px;
+        }
+    }
+    .image-map-container {
+        .render-placeholder-image {
+            img {
+                max-width: 90%;
+            }
+
+            text-align: center;
+        }
+
+        .placeholder-image {
+            height: 100%;
+            background-size: cover;
+            border-radius: 5px;
+        }
     }
 }
