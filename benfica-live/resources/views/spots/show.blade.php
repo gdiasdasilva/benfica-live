@@ -20,6 +20,10 @@
             <google-map lat="{{ $spot->latitude }}" lng="{{ $spot->longitude }}"></google-map>
         @elseif ($spot->image)
             <img src="{{ asset('storage/'.$spot->image) }}" alt="Imagem do spot">
+        @else
+            /* Render Benfica player */
+            
+            {{-- <img src="" alt=""> --}}
         @endif
     </div>
 </div>

@@ -9191,6 +9191,10 @@ a.text-dark:hover {
   visibility: hidden !important;
 }
 
+h2 {
+  margin-bottom: 20px;
+}
+
 .btn.btn-danger-inverted {
   color: #c62828;
   background-color: #fff;
@@ -9212,7 +9216,6 @@ body {
 
 .welcome-page h2 {
   margin-top: 30px;
-  margin-bottom: 20px;
 }
 
 .welcome-page .benfica-header-logo {

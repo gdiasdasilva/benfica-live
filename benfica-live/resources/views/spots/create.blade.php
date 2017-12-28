@@ -12,30 +12,30 @@
                 <div class="form-group">
                     <div class="form-group">
                         <label class="col-form-label" for="formSpotName">Nome do Spot *</label>
-                        <input type="text" class="form-control" id="formSpotName" placeholder="Nome do Spot*" name="name" required>
+                        <input type="text" class="form-control" id="formSpotName" placeholder="Nome do Spot*" name="name" required value="{{ old('name') }}">
                     </div>
                     <div class="form-group">
                         <label class="col-form-label" for="formSpotAddress">Morada</label>
-                        <input type="text" class="form-control" id="formSpotAddress" placeholder="Morada" name="address">
+                        <input type="text" class="form-control" id="formSpotAddress" placeholder="Morada" name="address" value="{{ old('address') }}">
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="formSpotEmail">E-mail</label>
-                            <input type="email" class="form-control" id="formSpotEmail" placeholder="E-mail" name="email">
+                            <input type="email" class="form-control" id="formSpotEmail" placeholder="E-mail" name="email" value="{{ old('email') }}">
                         </div>
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="formSpotPhone">Telefone</label>
-                            <input type="tel" class="form-control" id="formSpotPhone" placeholder="Telefone" name="phone_number">
+                            <input type="tel" class="form-control" id="formSpotPhone" placeholder="Telefone" name="phone_number" value="{{ old('phone_number') }}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-form-label" for="formSpotTripAdvisorURL">URL do TripAdvisor</label>
-                        <input type="text" class="form-control" id="formSpotTripAdvisorURL" placeholder="URL do TripAdvisor" name="tripadvisor_url">
+                        <input type="text" class="form-control" id="formSpotTripAdvisorURL" placeholder="URL do TripAdvisor" name="tripadvisor_url" value="{{ old('tripadvisor_url') }}">
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="formSpotCity">Cidade *</label>
-                            <input type="text" class="form-control" id="formSpotCity" placeholder="Cidade *" name="city" required>
+                            <input type="text" class="form-control" id="formSpotCity" placeholder="Cidade *" name="city" required value="{{ old('city') }}">
                         </div>
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="formSpotCountry">País</label>
