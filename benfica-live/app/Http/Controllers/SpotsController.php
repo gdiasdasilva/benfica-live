@@ -59,7 +59,7 @@ class SpotsController extends Controller
             'name' => 'required|max:60',
             'city' => 'required|max:35',
             'email' => 'email|nullable',
-            'tripadvisor_url' => 'url|nullable',
+            // 'tripadvisor_url' => 'url|nullable',
             'country_id' => 'required|exists:countries,id',
             'spot_image' => 'image|nullable'
         ]);
@@ -89,7 +89,7 @@ class SpotsController extends Controller
             'address',
             'email',
             'phone_number',
-            'tripadvisor_url',
+            // 'tripadvisor_url',
             'city',
             'country_id',
         ]);
@@ -102,7 +102,7 @@ class SpotsController extends Controller
             'address' => $request['address'],
             'email' => $request['email'],
             'phone_number' => $request['phone_number'],
-            'tripadvisor_url' => $request['tripadvisor_url'],
+            // 'tripadvisor_url' => $request['tripadvisor_url'],
             'city' => $request['city'],
             'country_id' => $request['country_id'],
             'image' => $imagePath,

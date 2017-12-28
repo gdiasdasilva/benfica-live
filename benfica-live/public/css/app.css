@@ -9210,6 +9210,11 @@ h2 {
   background-color: #c62828;
 }
 
+.btn.btn-danger-white-border {
+  background-color: #c62828;
+  border: 1px solid white;
+}
+
 body {
   padding-bottom: 50px;
 }

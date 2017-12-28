@@ -17,6 +17,11 @@ h2 {
     background-color: $materialize-red;
 }
 
+.btn.btn-danger-white-border {
+    background-color: $materialize-red;
+    border: 1px solid white;
+}
+
 body {
     padding-bottom: 50px;
 }
