@@ -24,7 +24,7 @@ Route::get('/spots/{slug}', 'SpotsController@show');
 /* Countries */
 
 Route::get('/paises', 'CountriesController@index');
-Route::get('/paises/{countrySlug}/{spotSlug}', 'SpotsController@show');
+Route::get('/paises/{countrySlug}/spots/{spotSlug}', 'SpotsController@show');
 Route::get('/paises/{countrySlug}', 'CountriesController@show');
 
 /* Contacts */

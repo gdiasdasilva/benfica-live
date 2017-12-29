@@ -59,7 +59,6 @@ class SpotsController extends Controller
             'name' => 'required|max:60',
             'city' => 'required|max:35',
             'email' => 'email|nullable',
-            // 'tripadvisor_url' => 'url|nullable',
             'country_id' => 'required|exists:countries,id',
             'spot_image' => 'image|nullable'
         ]);
@@ -84,27 +83,16 @@ class SpotsController extends Controller
             Storage::put($thumbnailPath, (string) $imgThumbnail->encode());
         }
 
-        $request = $request->only([
-            'name',
-            'address',
-            'email',
-            'phone_number',
-            // 'tripadvisor_url',
-            'city',
-            'country_id',
-        ]);
-
         $name = $request['name'];
 
         Spot::create([
-            'name' => $request['name'],
-            'slug' => str_slug($request['name']),
-            'address' => $request['address'],
-            'email' => $request['email'],
-            'phone_number' => $request['phone_number'],
-            // 'tripadvisor_url' => $request['tripadvisor_url'],
-            'city' => $request['city'],
-            'country_id' => $request['country_id'],
+            'name' => $name,
+            'slug' => str_slug($name),
+            'address' => $request->has('address') ? $request->input('address') : null,
+            'email' => $request->has('email') ? $request->input('email') : null,
+            'phone_number' => $request->has('phone_number') ? $request->input('phone_number') : null,
+            'city' => $request->has('city') ? $request->input('city') : null,
+            'country_id' => $request->has('country_id') ? $request->input('country_id') : null,
             'image' => $imagePath,
             'thumbnail_image' => $thumbnailPath
         ]);

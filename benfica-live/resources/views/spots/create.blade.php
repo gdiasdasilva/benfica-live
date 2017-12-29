@@ -44,10 +44,6 @@
                         <input type="tel" class="form-control" id="formSpotPhone" placeholder="Telefone" name="phone_number" value="{{ old('phone_number') }}">
                     </div>
                 </div>
-                {{-- <div class="form-group">
-                    <label class="col-form-label" for="formSpotTripAdvisorURL">URL do TripAdvisor</label>
-                    <input type="text" class="form-control" id="formSpotTripAdvisorURL" placeholder="URL do TripAdvisor" name="tripadvisor_url" value="{{ old('tripadvisor_url') }}">
-                </div> --}}
                 <div class="form-group">
                     <label class="col-form-label" for="formSpotImage">Imagem</label>
                     <input type="file" class="form-control-file" id="formSpotImage" name="spot_image">

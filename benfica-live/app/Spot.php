@@ -12,7 +12,6 @@ class Spot extends Model
         'address',
         'email',
         'phone_number',
-        'tripadvisor_url',
         'city',
         'country_id',
         'image',
@@ -26,7 +25,7 @@ class Spot extends Model
 
     public function path()
     {
-        return '/paises/' . $this->country->slug_pt . '/' . $this->slug;
+        return '/paises/' . $this->country->slug_pt . '/spots/' . $this->slug;
     }
 
     public function country()

@@ -23,7 +23,6 @@ class CreateSpotsTable extends Migration
             $table->string('thumbnail_image')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
-            $table->string('tripadvisor_url')->nullable();
             $table->string('email')->nullable();
             $table->string('phone_number')->nullable();
             $table->boolean('is_approved')->default(false);

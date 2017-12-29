@@ -7,13 +7,23 @@
         <h2 class="display-4">{{ $spot->name }}</h2>
         <p class="lead">{{ $spot->city }}, {{ $spot->country->name_pt }}</p>
 
-        <h3>Morada</h3>
-        <p>{!! nl2br(e($spot->address)) !!}</p>
+        @if ($spot->address)
+            <h3>Morada</h3>
+            <p>{!! nl2br(e($spot->address)) !!}</p>
+        @endif
 
-        <h3>Contactos</h3>
-        <p><label>E-mail:</label> {{ $spot->email }}</p>
-        <p><label>Telefone:</label> {{ $spot->phone_number }}</p>
-        <p><label>TripAdvisor:</label> {{ $spot->tripadvisor_url }}</p>
+        @if ($spot->email || $spot->phone_number)
+            <h3>Contactos</h3>
+            @if ($spot->email)
+                <p><label>E-mail:</label> {{ $spot->email }}</p>
+            @endif
+
+            @if ($spot->phone_number)
+                <p><label>Telefone:</label> {{ $spot->phone_number }}</p>
+            @endif
+        @endif
+
+        <a class="btn btn-danger" href="{{ $spot->country->path() }}">Ver mais em {{ $spot->country->name_pt }}</a>
     </div>
     <div class="col-md-6 image-map-container">
         @if ($spot->latitude && $spot->longitude)
