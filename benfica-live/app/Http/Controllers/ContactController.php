@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 use App\ContactMessage;
+use App\Mail\ContactSubmitted;
 
 class ContactController extends Controller
 {
@@ -25,11 +27,13 @@ class ContactController extends Controller
 
         $name = $request['name'];
 
-        ContactMessage::create([
+        $contactMessage = ContactMessage::create([
             'name' => $name,
             'email' => $request['email'],
             'message' => $request['message'],
         ]);
+
+        Mail::to(config('mail.to')['address'])->send(new ContactSubmitted($contactMessage));
 
         return redirect('/')->with('success', "Obrigado $name! A tua mensagem foi enviada com sucesso!");
     }

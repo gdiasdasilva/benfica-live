@@ -11,25 +11,6 @@ use Storage;
 class SpotsController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $spots = Spot::all();
-        $spotsByCountry = [];
-
-        foreach ($spots as $spot) {
-            $spotsByCountry[$spot->country->name_pt][] = $spot;
-        }
-
-        ksort($spotsByCountry);
-
-        return view('spots.index')->with(compact('spotsByCountry'));
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -108,7 +89,9 @@ class SpotsController extends Controller
      */
     public function show($countrySlug, $spotSlug)
     {
-        $spot = Spot::where('slug', $spotSlug)->first();
+        // TODO activate this
+        // $spot = Spot::where('slug', $spotSlug)->where('is_approved', true)->firstOrFail();
+        $spot = Spot::where('slug', $spotSlug)->where('is_approved', false)->firstOrFail();
         return view('spots.show')->with(compact('spot'));
     }
 

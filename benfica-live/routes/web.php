@@ -31,3 +31,10 @@ Route::get('/paises/{countrySlug}', 'CountriesController@show');
 
 Route::get('/contactos', 'ContactController@show');
 Route::post('/contactos', 'ContactController@store');
+
+/* Emails test */
+
+Route::get('/mailable', function () {
+    $contactMessage = App\ContactMessage::find(1);
+    return new App\Mail\ContactSubmitted($contactMessage);
+});
