@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $recent_spots = Spot::orderBy('created_at', 'desc')->take(3)->get();
+        $recent_spots = Spot::orderBy('created_at', 'desc')->where('is_approved', true)->take(3)->get();
         return view('welcome')->with(compact('recent_spots'));
     }
 }
