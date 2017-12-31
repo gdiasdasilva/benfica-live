@@ -9,7 +9,7 @@
             @foreach ($countries as $country)
                 <a href="{{ $country->path() }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                     {{ $country->name_pt }} {{ $country->emoji }}
-                    <span class="badge badge-danger">{{ $country->spots->count() }}</span>
+                    <span class="badge badge-danger">{{ $country->spots_count }}</span>
                 </a>
             @endforeach
         </div>
