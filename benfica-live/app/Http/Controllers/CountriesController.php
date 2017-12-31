@@ -9,7 +9,10 @@ class CountriesController extends Controller
 {
     public function index()
     {
-        $countries = Country::has('spots')->orderBy('name_pt', 'ASC')->get();
+        $countries = Country::whereHas('spots', function($spot){
+            $spot->where('is_approved', true);
+        })->orderBy('name_pt', 'ASC')->get();
+
         return view('countries.index', compact('countries'));
     }
 
