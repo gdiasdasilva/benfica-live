@@ -41,7 +41,8 @@ class SpotsController extends Controller
             'city' => 'required|max:35',
             'email' => 'email|nullable',
             'country_id' => 'required|exists:countries,id',
-            'spot_image' => 'image|nullable'
+            'spot_image' => 'image|nullable',
+            'website' => 'url|nullable'
         ]);
 
         $image = $request->file('spot_image');
@@ -75,7 +76,8 @@ class SpotsController extends Controller
             'city' => $request->has('city') ? $request->input('city') : null,
             'country_id' => $request->has('country_id') ? $request->input('country_id') : null,
             'image' => $imagePath,
-            'thumbnail_image' => $thumbnailPath
+            'thumbnail_image' => $thumbnailPath,
+            'website' => $request->has('website') ? $request->input('website') : null,
         ]);
 
          return redirect('/')->with('success', "Spot $name submetido com sucesso. Será publicado após ser revisto e aprovado. Obrigado!");
@@ -89,7 +91,7 @@ class SpotsController extends Controller
      */
     public function show($countrySlug, $spotSlug)
     {
-        $spot = Spot::where('slug', $spotSlug)->where('is_approved', true)->firstOrFail();    
+        $spot = Spot::where('slug', $spotSlug)->where('is_approved', true)->firstOrFail();
         return view('spots.show')->with(compact('spot'));
     }
 

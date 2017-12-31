@@ -23,25 +23,31 @@
                         <select id="formSpotCountry" class="form-control" name="country_id" required>
                             <option selected>Escolher...</option>
                             @foreach ($countries_list as $country)
-                                <option value="{{ $country->id }}">
+                                <option value="{{ $country->id }}" @if($country->id == old('country_id')) selected @endif>
                                     {{ $country->name_pt }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-form-label" for="formSpotAddress">Morada</label>
-                    <input type="text" class="form-control" id="formSpotAddress" placeholder="Morada" name="address" value="{{ old('address') }}">
-                </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label class="col-form-label" for="formSpotEmail">E-mail</label>
-                        <input type="email" class="form-control" id="formSpotEmail" placeholder="E-mail" name="email" value="{{ old('email') }}">
+                        <label class="col-form-label" for="formSpotAddress">Morada</label>
+                        <input type="text" class="form-control" id="formSpotAddress" placeholder="Morada" name="address" value="{{ old('address') }}">
                     </div>
                     <div class="form-group col-md-6">
                         <label class="col-form-label" for="formSpotPhone">Telefone</label>
                         <input type="tel" class="form-control" id="formSpotPhone" placeholder="Telefone" name="phone_number" value="{{ old('phone_number') }}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="col-form-label" for="formSpotWebsite">Website</label>
+                        <input type="text" class="form-control" id="formSpotWebsite" placeholder="Website" name="website" value="{{ old('website') }}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-form-label" for="formSpotEmail">E-mail</label>
+                        <input type="email" class="form-control" id="formSpotEmail" placeholder="E-mail" name="email" value="{{ old('email') }}">
                     </div>
                 </div>
                 <div class="form-group">

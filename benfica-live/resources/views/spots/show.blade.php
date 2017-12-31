@@ -12,10 +12,14 @@
             <p>{!! nl2br(e($spot->address)) !!}</p>
         @endif
 
-        @if ($spot->email || $spot->phone_number)
+        @if ($spot->email || $spot->phone_number || $spot->website)
             <h3>Contactos</h3>
             @if ($spot->email)
                 <p><label>E-mail:</label> {{ $spot->email }}</p>
+            @endif
+
+            @if ($spot->website)
+                <p><label>Website:</label> <a href="{{ $spot->website }}" target="_blank" rel="noopener">{{ $spot->website }}</a></p>
             @endif
 
             @if ($spot->phone_number)

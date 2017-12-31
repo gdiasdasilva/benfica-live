@@ -15,7 +15,8 @@ class Spot extends Model
         'city',
         'country_id',
         'image',
-        'thumbnail_image'
+        'thumbnail_image',
+        'website'
     ];
 
     public function getRouteKeyName()
