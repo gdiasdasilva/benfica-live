@@ -13,6 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(CountriesWithPTTableSeeder::class);
         $this->call(CountriesSlugTableSeeder::class);
-        $this->call(SpotsTableSeeder::class);
+        // $this->call(SpotsTableSeeder::class);
     }
 }
