@@ -32,10 +32,27 @@
         <a class="btn btn-danger" href="{{ $spot->country->path() }}">Ver mais em {{ $spot->country->name_pt }}</a>
     </div>
     <div class="col-md-6 image-map-container">
-        @if ($spot->latitude && $spot->longitude)
-            <google-map lat="{{ $spot->latitude }}" lng="{{ $spot->longitude }}"></google-map>
-        @elseif ($spot->image)
-            <div class="placeholder-image" style="background-image: url({{ asset('storage/'.$spot->thumbnail_image) }});"></div>
+        @if ((!is_null($spot->latitude) && !is_null($spot->longitude)) || $spot->thumbnail_image)
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link @if(!is_null($spot->latitude) && !is_null($spot->longitude)) active @else disabled @endif" data-toggle="tab" href="#map">Mapa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @if(!$spot->thumbnail_image) disabled @endif @if(!(!is_null($spot->latitude) && !is_null($spot->longitude)) && $spot->thumbnail_image) active @endif" data-toggle="tab" href="#image">Fotografias</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                @if(!is_null($spot->latitude) && !is_null($spot->longitude))
+                    <div id="map" class="container tab-pane active"><br>
+                        <google-map lat="{{ $spot->latitude }}" lng="{{ $spot->longitude }}"></google-map>
+                    </div>
+                @endif
+                @if($spot->thumbnail_image)
+                    <div id="image" class="container tab-pane @if(!is_null($spot->latitude) && !is_null($spot->longitude)) fade @else active @endif"><br>
+                        <div class="placeholder-image" style="background-image: url({{ asset('storage/'.$spot->thumbnail_image) }});"></div>
+                    </div>
+                @endif
+            </div>
         @else
             <div class="render-placeholder-render">
                 <img src="/images/renders/equipa.png" alt="Render da equipa">

@@ -19,6 +19,14 @@
             background-size: cover;
             border-radius: 5px;
         }
+
+        .tab-content {
+            height: 100%;
+
+            .tab-pane {
+                height: 100%;
+            }
+        }
     }
 
     h2 {
