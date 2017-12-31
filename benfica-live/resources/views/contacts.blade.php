@@ -14,16 +14,19 @@
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label class="col-form-label" for="formContactName">Nome *</label>
-                    <input type="text" class="form-control" id="formContactName" placeholder="Nome" name="name" required>
+                    <input type="text" class="form-control" id="formContactName" placeholder="Nome" name="name" required value="{{ old('name') }}">
                 </div>
                 <div class="form-group">
                     <label class="col-form-label" for="formContactEmail">E-mail *</label>
-                    <input type="email" class="form-control" id="formContactEmail" placeholder="E-mail" name="email" required>
+                    <input type="email" class="form-control" id="formContactEmail" placeholder="E-mail" name="email" required value="{{ old('email') }}">
                 </div>
                 <div class="form-group">
                     <label class="col-form-label" for="formContactMessage">Mensagem *</label>
-                    <textarea id="formContactMessage" class="form-control" name="message" rows="8" cols="80" placeholder="Mensagem" required></textarea>
+                    <textarea id="formContactMessage" class="form-control" name="message" rows="8" cols="80" placeholder="Mensagem" required value="{{ old('message') }}"></textarea>
                 </div>
+
+                @captcha()
+
                 <button type="submit" class="btn btn-danger">Submeter</button>
             </form>
         </div>

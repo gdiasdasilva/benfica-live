@@ -20,7 +20,8 @@ class ContactController extends Controller
         $request->validate([
             'name' => 'required|max:55',
             'email' => 'required|email',
-            'message' => 'required'
+            'message' => 'required',
+            'g-recaptcha-response' => 'required|captcha'
         ]);
 
         $request = $request->only(['name', 'email', 'message']);
@@ -33,7 +34,7 @@ class ContactController extends Controller
             'message' => $request['message'],
         ]);
 
-        // Mail::to(config('mail.to')['address'])->send(new ContactSubmitted($contactMessage));
+        Mail::to(config('mail.to')['address'])->send(new ContactSubmitted($contactMessage));
 
         return redirect('/')->with('success', "Obrigado $name! A tua mensagem foi enviada com sucesso!");
     }
