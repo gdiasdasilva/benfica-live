@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Página não encontrada | {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -38,7 +38,7 @@
                     <p class="lead">
                         Aproveita e procura outros spots!
                     </p>
-                    <a class="btn btn-danger" href="/spots">Listagem de Spots</a>
+                    <a class="btn btn-danger" href="/paises">Listagem de Spots</a>
                 </div>
             </div>
         </div>

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', $country->name_pt)
+
 @section('content')
 
 <div class="row">

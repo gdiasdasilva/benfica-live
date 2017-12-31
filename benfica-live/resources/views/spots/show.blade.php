@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', $spot->name)
+
 @section('content')
 
 <div class="row spot-detail">

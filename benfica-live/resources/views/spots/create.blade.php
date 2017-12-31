@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Submeter um Spot')
+
 @section('content')
 
 <div class="container">
@@ -11,7 +13,7 @@
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label class="col-form-label" for="formSpotName">Nome do Spot *</label>
-                    <input type="text" class="form-control" id="formSpotName" placeholder="Nome do Spot*" name="name" required value="{{ old('name') }}">
+                    <input type="text" class="form-control" id="formSpotName" placeholder="Nome do Spot *" name="name" required value="{{ old('name') }}">
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">

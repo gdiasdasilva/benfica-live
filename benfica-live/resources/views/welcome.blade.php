@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Homepage')
+
 @section('content')
 
 <div class="welcome-page">

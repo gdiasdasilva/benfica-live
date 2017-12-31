@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Spots')
+
 @section('content')
 
 <div class="row">
     <div class="col-md-6 mx-auto">
-        <h2>Por País</h2>
+        <h2>Spots | Por país</h2>
         <div class="list-group">
             @foreach ($countries as $country)
                 <a href="{{ $country->path() }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
