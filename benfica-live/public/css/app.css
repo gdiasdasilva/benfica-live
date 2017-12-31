@@ -9311,3 +9311,7 @@ nav.navbar li.nav-item a.nav-link:hover {
   border-radius: 5px;
 }
 
+.spot-detail h2 {
+  margin-bottom: 0;
+}
+

@@ -54755,7 +54755,7 @@ var render = function() {
     "gmap-map",
     {
       staticStyle: { width: "100%", height: "450px" },
-      attrs: { center: _vm.center, zoom: 7 }
+      attrs: { center: _vm.center, zoom: 17 }
     },
     _vm._l(_vm.markers, function(m, index) {
       return _c("gmap-marker", {
