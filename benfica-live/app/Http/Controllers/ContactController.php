@@ -33,7 +33,7 @@ class ContactController extends Controller
             'message' => $request['message'],
         ]);
 
-        Mail::to(config('mail.to')['address'])->send(new ContactSubmitted($contactMessage));
+        // Mail::to(config('mail.to')['address'])->send(new ContactSubmitted($contactMessage));
 
         return redirect('/')->with('success', "Obrigado $name! A tua mensagem foi enviada com sucesso!");
     }

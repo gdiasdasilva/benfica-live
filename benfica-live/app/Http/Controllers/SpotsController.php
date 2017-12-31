@@ -89,9 +89,7 @@ class SpotsController extends Controller
      */
     public function show($countrySlug, $spotSlug)
     {
-        // TODO activate this
-        // $spot = Spot::where('slug', $spotSlug)->where('is_approved', true)->firstOrFail();
-        $spot = Spot::where('slug', $spotSlug)->where('is_approved', false)->firstOrFail();
+        $spot = Spot::where('slug', $spotSlug)->where('is_approved', true)->firstOrFail();    
         return view('spots.show')->with(compact('spot'));
     }
 
