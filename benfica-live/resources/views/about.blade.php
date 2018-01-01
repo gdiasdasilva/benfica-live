@@ -68,9 +68,15 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-8 mx-auto">
-            <p class="lead">O <strong>benfica.live</strong> foi criado com o intuito de promover a partilha de espaços utilizados por benfiquistas, em Portugal e no estrangeiro, para assistir aos jogos do Sport Lisboa e Benfica.</p>
-            <p class="lead">A plataforma é mantida por adeptos e para adeptos. No mapa abaixo, podes ver todos os países para os quais já foram adicionados spots:</p>
+        <div class="col-md-10 mx-auto">
+            <h1>Sobre o projecto</h1>
+            <p class="lead">O <strong>benfica.live</strong> surge da necessidade de centralizar a informação sobre locais (cafés, restaurantes) onde sejam transmitidos os jogos do Sport Lisboa e Benfica, em Portugal e pelo Mundo.</p>
+
+            <p class="lead">Seja em viagem de trabalho, de lazer ou durante um programa Erasmus, muitos benfiquistas têm dificuldade em encontrar locais que transmitam regularmente os jogos.</p>
+
+            <p class="lead">A plataforma foi criada por adeptos e é para os adeptos. Qualquer pessoa tem a liberdade de submeter um local e contribuir para a comunidade.</p>
+
+            <p class="lead">No mapa abaixo estão representados todos os países para os quais já foram submetidos locais (spots) que transmitem os jogos.</p>
         </div>
     </div>
     <div class="row">

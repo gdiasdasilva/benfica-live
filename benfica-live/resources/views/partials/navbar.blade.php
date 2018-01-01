@@ -13,6 +13,9 @@
                 <a class="nav-link" href="/contactos">Contactos</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/sobre-nos">Sobre</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link btn btn-danger-white-border" href="/spots/new">Submeter um Spot</a>
             </li>
         </ul>
