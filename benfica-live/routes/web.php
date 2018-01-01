@@ -32,6 +32,9 @@ Route::get('/paises/{countrySlug}', 'CountriesController@show');
 Route::get('/contactos', 'ContactController@show');
 Route::post('/contactos', 'ContactController@store');
 
+/* About */
+Route::get('/sobre-nos', 'HomeController@about');
+
 /* Emails test */
 
 // Route::get('/mailable', function () {
