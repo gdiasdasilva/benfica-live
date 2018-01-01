@@ -21,11 +21,13 @@
         @foreach ($recent_spots as $spot)
             <div class="col-md-4 last-submission-entry">
                 <div class="card">
-                    @if ($spot->image)
-                        <img class="card-img-top" src="{{ asset('storage/'.$spot->image) }}" alt="Imagem do spot">
-                    @else
-                        <img class="card-img-top" src="images/placeholder-restaurante.jpeg" alt="Imagem do spot">
-                    @endif
+                    <a href="{{ $spot->path() }}">
+                        @if ($spot->image)
+                            <img class="card-img-top" src="{{ asset('storage/'.$spot->image) }}" alt="Imagem do spot">
+                        @else
+                            <img class="card-img-top" src="images/placeholder-restaurante.jpeg" alt="Imagem do spot">
+                        @endif
+                    </a>
                     <div class="card-body">
                         <h4 class="card-title">{{ $spot->name }}</h4>
                         <p class="card-text">{{ $spot->city }}, {{ $spot->country->name_pt }}</p>
