@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="row">
+<div class="row country-detail">
     <div class="col-md-6 mx-auto">
         <h2>{{ $country->name_pt }} {{ $country->emoji }}</h2>
         <div class="list-group">
@@ -15,6 +15,8 @@
                 </a>
             @endforeach
         </div>
+
+        <a class="btn btn-danger more-countries" href="/paises">Ver outros países</a>
     </div>
 </div>
 
