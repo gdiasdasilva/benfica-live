@@ -27,7 +27,7 @@
                 series: {
                     regions: [{
                         values: countriesData,
-                        scale: ['#ef5350', '#c62828'],
+                        scale: ['#ef9a9a', '#b71c1c'],
                         normalizeFunction: 'polynomial'
                     }]
                 },
@@ -70,7 +70,7 @@
     <div class="row">
         <div class="col-md-8 mx-auto">
             <p class="lead">O <strong>benfica.live</strong> foi criado com o intuito de promover a partilha de espaços utilizados por benfiquistas, em Portugal e no estrangeiro, para assistir aos jogos do Sport Lisboa e Benfica.</p>
-            <p>A plataforma é mantida por adeptos e para adeptos. No mapa abaixo, podes ver todos os países para os quais já foram adicionados spots:</p>
+            <p class="lead">A plataforma é mantida por adeptos e para adeptos. No mapa abaixo, podes ver todos os países para os quais já foram adicionados spots:</p>
         </div>
     </div>
     <div class="row">

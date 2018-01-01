@@ -16,7 +16,6 @@
     <link rel="icon" type="image/png" href="{{ asset('images/favicon-96x96.png') }}" sizes="96x96">
     <link rel="icon" type="image/png" href="{{ asset('images/favicon-16x16.png') }}" sizes="16x16">
     @yield('styles')
-    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body>
     <div id="app">
@@ -28,7 +27,7 @@
     </div>
 
     <!-- Scripts -->
-    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
+    <script src="{{ asset('js/app.js') }}"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111780420-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
