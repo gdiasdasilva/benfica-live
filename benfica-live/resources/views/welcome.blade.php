@@ -31,7 +31,7 @@
                     <div class="card-body">
                         <h4 class="card-title">{{ $spot->name }}</h4>
                         <p class="card-text">{{ $spot->city }}, {{ $spot->country->name_pt }}</p>
-                        <a href="{{ $spot->path() }}" class="btn btn-sm btn-danger-inverted">Ver mais</a>
+                        <a href="{{ $spot->path() }}" class="btn btn-danger-inverted">Ver mais</a>
                     </div>
                 </div>
             </div>
