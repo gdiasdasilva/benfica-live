@@ -26,7 +26,7 @@ class CountriesController extends Controller
             ->with(['spots' => function ($query) {
                 $query->where('is_approved', true);
             }])
-            ->first();
+            ->firstOrFail();
 
         return view('countries.show', compact('country'));
     }
