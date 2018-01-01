@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Sobre nós')
+
 @section('scripts')
     <script src="/js/jquery-jvectormap-2.0.3.min.js"></script>
     <script src="/js/jquery-jvectormap-world-mill.js"></script>
@@ -25,7 +27,7 @@
                 series: {
                     regions: [{
                         values: countriesData,
-                        scale: ['#ffcdd2', '#ef5350', '#c62828'],
+                        scale: ['#ef5350', '#c62828'],
                         normalizeFunction: 'polynomial'
                     }]
                 },
