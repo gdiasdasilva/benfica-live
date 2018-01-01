@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <h2>Últimas submissões</h2>
+    <h2>Spots submetidos</h2>
 
     <div class="row last-submissions">
         @foreach ($recent_spots as $spot)
