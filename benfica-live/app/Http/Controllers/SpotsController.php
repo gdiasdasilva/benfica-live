@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Spot;
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Image;
 use Storage;
+
+use App\Mail\SpotSubmitted;
 
 class SpotsController extends Controller
 {
@@ -67,7 +70,7 @@ class SpotsController extends Controller
 
         $name = $request['name'];
 
-        Spot::create([
+        $spot = Spot::create([
             'name' => $name,
             'slug' => str_slug($name),
             'address' => $request->has('address') ? $request->input('address') : null,
@@ -79,6 +82,8 @@ class SpotsController extends Controller
             'thumbnail_image' => $thumbnailPath,
             'website' => $request->has('website') ? $request->input('website') : null,
         ]);
+
+        Mail::to(config('mail.to')['address'])->send(new SpotSubmitted($spot));
 
          return redirect('/')->with('success', "Spot $name submetido com sucesso. Será publicado após ser revisto e aprovado. Obrigado!");
     }

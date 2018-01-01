@@ -34,7 +34,7 @@ Route::post('/contactos', 'ContactController@store');
 
 /* Emails test */
 
-Route::get('/mailable', function () {
-    $contactMessage = App\ContactMessage::find(1);
-    return new App\Mail\ContactSubmitted($contactMessage);
-});
+// Route::get('/mailable', function () {
+//     $contactMessage = App\Spot::find(1);
+//     return new App\Mail\SpotSubmitted($contactMessage);
+// });

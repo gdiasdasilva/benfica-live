@@ -1,4 +1,4 @@
-<h1>Contacto - benfica.live</h1>
+<h3>Contacto - benfica.live</h3>
 <p>
     <strong>{{ $contactMessage->created_at }}</strong>
 </p>
