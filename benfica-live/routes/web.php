@@ -11,7 +11,18 @@
 |
 */
 
-// Auth::routes();
+Route::get('/admin/login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
+Route::post('/admin/login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
+Route::get('/admin/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
+
+Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
+{
+    Route::get('/', 'Admin\DashboardController@dashboard');
+    Route::get('/spots', 'Admin\SpotsController@index');
+});
+
+// Route::get('/admin/submissions', 'DashboardController@dashboard');
+
 Route::get('/', 'HomeController@index');
 
 /* Spots */
