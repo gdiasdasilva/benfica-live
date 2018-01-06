@@ -12,6 +12,7 @@
             </div>
             <p class="lead">O <strong>benfica.live</strong> foi criado com o intuito de promover a partilha de espaços utilizados por benfiquistas, em Portugal e no estrangeiro, para assistir aos jogos do Sport Lisboa e Benfica.</p>
             <p class="lead">Se souberes de algum sítio que transmita os jogos do Benfica, recomenda a todos os outros benfiquistas! A plataforma é mantida por adeptos e para adeptos.</p>
+            <p class="lead">A plataforma conta já com <strong>{{ $spotsCount }}</strong> spots, em <strong>{{ $countriesCount }}</strong> países diferentes.</p>
         </div>
     </div>
 

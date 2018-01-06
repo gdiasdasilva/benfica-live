@@ -17,12 +17,18 @@ class HomeController extends Controller
     public function index()
     {
         $recent_spots = Spot::orderBy('created_at', 'desc')->where('is_approved', true)->get()->take(3);
-        return view('welcome', compact('recent_spots'));
+
+        $spotsCount = Spot::all()->count();
+        $countriesCount = Country::whereHas('spots', function($spot) {
+            $spot->where('is_approved', true);
+        })->count();
+
+        return view('welcome', compact('recent_spots', 'spotsCount', 'countriesCount'));
     }
 
     public function about()
     {
-        $countriesWithSpots = Country::whereHas('spots', function($spot){
+        $countriesWithSpots = Country::whereHas('spots', function($spot) {
             $spot->where('is_approved', true);
         })
         ->withCount(['spots' => function ($spots) {
