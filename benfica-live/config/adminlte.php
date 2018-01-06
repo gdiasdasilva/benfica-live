@@ -116,7 +116,7 @@ return [
         ],
         [
             'text'        => 'Últimas submissões',
-            'url'         => 'admin/submissions',
+            'url'         => 'admin/spots/submissions',
             'icon'        => 'keyboard-o',
         ],
     ],

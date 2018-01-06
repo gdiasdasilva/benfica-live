@@ -29,7 +29,9 @@
                                     <td>{{ $spot->name }}</td>
                                     <td>{{ $spot->country->name_pt }}</td>
                                     <td>{{ $spot->city }}</td>
-                                    <td width="15px;" class="{{ $spot->is_approved ? 'bg-green' : 'bg-red' }}"></td>
+                                    <td class="">
+                                        <span class="badge {{ $spot->is_approved ? 'bg-green' : 'bg-red' }}">{{ $spot->is_approved ? 'Aprovado' : 'Por aprovar' }}</span>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -19,6 +19,9 @@ Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
 {
     Route::get('/', 'Admin\DashboardController@dashboard');
     Route::get('/spots', 'Admin\SpotsController@index');
+    Route::get('/spots/submissions', 'Admin\SpotsController@getSubmissions');
+    Route::get('/spots/submissions/{spotId}', 'Admin\SpotsController@show');
+    Route::post('/spots/submissions/{spotId}', 'Admin\SpotsController@update');
 });
 
 // Route::get('/admin/submissions', 'DashboardController@dashboard');
