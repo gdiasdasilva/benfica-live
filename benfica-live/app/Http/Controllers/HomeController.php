@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $recent_spots = Spot::orderBy('created_at', 'desc')->where('is_approved', true)->get()->random(3);
+        $recent_spots = Spot::orderBy('created_at', 'desc')->where('is_approved', true)->get()->take(3);
         return view('welcome', compact('recent_spots'));
     }
 
@@ -29,7 +29,7 @@ class HomeController extends Controller
             $spots->where('is_approved', true);
         }])
         ->orderBy('name_pt', 'ASC')->get();
-        
+
         return view('about', compact('countriesWithSpots'));
     }
 }

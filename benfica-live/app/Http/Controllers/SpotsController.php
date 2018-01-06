@@ -23,6 +23,7 @@ class SpotsController extends Controller
         $countries_list = DB::table('countries')
             ->select('id', 'name_pt')
             ->where('continent_id', 2)
+            ->orWhere('continent_id', 3)
             ->orWhere('continent_id', 6)
             ->orWhere('continent_id', 7)
             ->orderBy('name_pt', 'asc')
