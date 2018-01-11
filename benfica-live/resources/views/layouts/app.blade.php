@@ -10,6 +10,12 @@
 
     <title>@yield('pageTitle') | {{ config('app.name', 'Laravel') }}</title>
 
+    <meta property="og:title" content="benfica.live | Partilha de Spots" />
+    <meta property="og:description" content="O benfica.live foi criado com o intuito de promover a partilha de espaços utilizados por benfiquistas, em Portugal e no estrangeiro, para assistir aos jogos do Sport Lisboa e Benfica." />
+    <meta property="og:image" content="{{ asset('images/BenficaLive-FacebookOG.png') }}"/>
+    <meta name="og:image:width" content="1200"/>
+    <meta name="og:image:height" content="630">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ asset('images/favicon-32x32.png') }}" sizes="32x32">
