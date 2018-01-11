@@ -16,6 +16,11 @@
     <meta name="og:image:width" content="1200"/>
     <meta name="og:image:height" content="630">
 
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Parade of Fans for Houston’s Funeral">
+    <meta name="twitter:description" content="O benfica.live foi criado com o intuito de promover a partilha de espaços utilizados por benfiquistas, em Portugal e no estrangeiro, para assistir aos jogos do Sport Lisboa e Benfica.">
+    <meta name="twitter:image" content="{{ asset('images/BenficaLive-TwitterCard.png') }}">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ asset('images/favicon-32x32.png') }}" sizes="32x32">
