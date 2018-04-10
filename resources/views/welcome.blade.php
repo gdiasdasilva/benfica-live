@@ -19,7 +19,7 @@
     <h2>Últimos spots submetidos</h2>
 
     <div class="row last-submissions">
-        @foreach ($recent_spots as $spot)
+        @foreach ($recentSpots as $spot)
             <div class="col-md-4 last-submission-entry">
                 <div class="card">
                     <a href="{{ $spot->path() }}">
