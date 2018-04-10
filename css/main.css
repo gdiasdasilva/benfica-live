@@ -1,8 +1,0 @@
-html, body {
-    height: 100%;
-}
-
-body {
-    background-image: url('../img/luz.jpeg');
-    background-size: cover;
-}
