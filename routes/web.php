@@ -30,7 +30,6 @@ Route::get('/', 'HomeController@index')->name('page.home');
 
 Route::post('/spots', 'SpotsController@store')->name('spots.store');
 Route::get('/spots/new', 'SpotsController@create')->name('spots.create');
-Route::get('/spots/{slug}', 'SpotsController@show')->name('spots.show');
 
 /* Countries */
 

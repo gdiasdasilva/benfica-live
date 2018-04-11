@@ -9,7 +9,7 @@
         <div class="col-md-12">
             <h2>Submeter um Spot!</h2>
 
-            <form class="" action="/spots" method="POST" enctype="multipart/form-data">
+            <form class="" action="{{ route('spots.store') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label class="col-form-label" for="formSpotName">Nome do Spot *</label>

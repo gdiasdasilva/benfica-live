@@ -10,7 +10,7 @@
             <h2>Contacta-nos</h2>
             <p class="lead">Se tens alguma dúvida ou sugestão, usa o formulário abaixo para entrar em contactos com os administradores do website. Responderemos brevemente.</p>
 
-            <form action="/contactos" method="POST">
+            <form action="{{ route('contacts.store') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label class="col-form-label" for="formContactName">Nome *</label>

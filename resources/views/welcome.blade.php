@@ -22,7 +22,7 @@
         @foreach ($recentSpots as $spot)
             <div class="col-md-4 last-submission-entry">
                 <div class="card">
-                    <a href="{{ $spot->path() }}">
+                    <a href="{{ route('spots.show', ['countrySlug' => $spot->country->slug_pt, 'spotSlug' => $spot->slug]) }}">
                         @if ($spot->image)
                             <img class="card-img-top" src="{{ asset('storage/'.$spot->image) }}" alt="Imagem do spot">
                         @else
@@ -32,7 +32,7 @@
                     <div class="card-body">
                         <h4 class="card-title">{{ $spot->name }}</h4>
                         <p class="card-text">{{ $spot->city }}, {{ $spot->country->name_pt }}</p>
-                        <a href="{{ $spot->path() }}" class="btn btn-danger-inverted">Ver mais</a>
+                        <a href="{{ route('spots.show', ['countrySlug' => $spot->country->slug_pt, 'spotSlug' => $spot->slug]) }}" class="btn btn-danger-inverted">Ver mais</a>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
 
     <div class="row">
         <div class="col-md-12 submit-spot-container">
-            <a href="/spots/new" class="submit-spot-button">
+            <a href="{{ route('spots.create') }}" class="submit-spot-button">
                 <button type="button" name="button" class="btn btn-lg btn-danger">Submeter um spot</button>
             </a>
         </div>
