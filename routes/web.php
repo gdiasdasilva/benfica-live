@@ -22,8 +22,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
 
     Route::get('/spots/submissions', 'SpotsController@getSubmissions')->name('admin.spots.submissions');
 
-    Route::get('/spots/{spot}', 'SpotsController@show')->name('admin.spots.show');
-    Route::post('/spots/{spot}', 'SpotsController@update')->name('admin.spots.update');
+    Route::get('/spots/{spotId}/edit', 'SpotsController@edit')->name('admin.spots.edit');
+    Route::post('/spots/{spotId}', 'SpotsController@update')->name('admin.spots.update');
 });
 
 /* Homepage */

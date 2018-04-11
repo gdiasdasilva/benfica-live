@@ -29,7 +29,7 @@
                                     <td>{{ $notApprovedSpot->name }}</td>
                                     <td>{{ $notApprovedSpot->country->name_pt }}</td>
                                     <td>{{ $notApprovedSpot->city }}</td>
-                                    <td><a class="btn btn-xs btn-primary" href="/admin/spots/submissions/{{$notApprovedSpot->id}}">Gerir</a></td>
+                                    <td><a class="btn btn-xs btn-primary" href="{{ route('admin.spots.edit', $notApprovedSpot->id) }}">Gerir</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

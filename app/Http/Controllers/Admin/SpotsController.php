@@ -24,6 +24,10 @@ class SpotsController extends Controller
         return view('admin.spots.index', compact('spots'));
     }
 
+    /**
+     * List of approved and not approved spots for management
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getSubmissions()
     {
         $spots = Spot::with('country')
@@ -36,18 +40,25 @@ class SpotsController extends Controller
         return view('admin.spots.submissions', compact('notApprovedSpots', 'approvedSpots'));
     }
 
-    public function show($spotId)
+    /**
+     * Show form to complete a Spot submission data
+     * @param $spot
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit($spotId)
     {
         $spot = Spot::findOrFail($spotId);
+
         $countries_list = DB::table('countries')
             ->select('id', 'name_pt')
             ->where('continent_id', 2)
+            ->orWhere('continent_id', 3)
             ->orWhere('continent_id', 6)
             ->orWhere('continent_id', 7)
             ->orderBy('name_pt', 'asc')
             ->get();
 
-        return view('admin.spots.show', compact('spot', 'countries_list'));
+        return view('admin.spots.edit', compact('spot', 'countries_list'));
     }
 
     public function update(Request $request, $spotId)
@@ -63,22 +74,30 @@ class SpotsController extends Controller
         $latitude = null;
         $longitude = null;
 
-        if ($request->has('latitudeLongitude')) {
-            $latitudeLongitude = explode(",", $request->input('latitudeLongitude'));
-            $latitude = $latitudeLongitude[0];
-            $longitude = $latitudeLongitude[1];
+        if ($request->has('latitudeLongitude') && $request->get('latitudeLongitude')) {
+            $latitudeLongitude = explode(",", $request->get('latitudeLongitude'));
+
+            if (count($latitudeLongitude) == 2) {
+                $latitude = $latitudeLongitude[0];
+                $longitude = $latitudeLongitude[1];
+            }
+        }
+
+        if (!($latitude && $longitude)) {
+            $latitude = null;
+            $longitude = null;
         }
 
         $spot = Spot::findOrFail($spotId);
 
         $spot->update([
-            'name' => $request->has('name') ? $request->input('name') : null,
-            'address' => $request->has('address') ? $request->input('address') : null,
-            'email' => $request->has('email') ? $request->input('email') : null,
-            'phone_number' => $request->has('phone_number') ? $request->input('phone_number') : null,
-            'city' => $request->has('city') ? $request->input('city') : null,
-            'country_id' => $request->has('country_id') ? $request->input('country_id') : null,
-            'website' => $request->has('website') ? $request->input('website') : null,
+            'name' => $request->get('name'),
+            'address' => $request->get('address'),
+            'email' => $request->get('email'),
+            'phone_number' => $request->get('phone_number'),
+            'city' => $request->get('city'),
+            'country_id' => $request->get('country_id'),
+            'website' => $request->get('website'),
             'latitude' => $latitude,
             'longitude' => $longitude,
             'is_approved' => true,
@@ -86,6 +105,6 @@ class SpotsController extends Controller
 
         $spot->save();
 
-        return redirect('/admin/spots/submissions')->with('success', "Spot $spot->name editado e aprovado com sucesso.");
+        return redirect(route('admin.spots.submissions'))->with('success', "Spot $spot->name editado e aprovado com sucesso.");
     }
 }
