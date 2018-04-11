@@ -14,7 +14,7 @@ use App\Mail\SpotSubmitted;
 class SpotsController extends Controller
 {
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new Spot.
      *
      * @return \Illuminate\Http\Response
      */
@@ -33,7 +33,7 @@ class SpotsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created Spot in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -86,11 +86,11 @@ class SpotsController extends Controller
 
         Mail::to(config('mail.to')['address'])->send(new SpotSubmitted($spot));
 
-         return redirect('/')->with('success', "Spot $name submetido com sucesso. Será publicado após ser revisto e aprovado. Obrigado!");
+        return redirect('/')->with('success', "Spot $name submetido com sucesso. Será publicado após ser revisto e aprovado. Obrigado!");
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified Spot.
      *
      * @param  \App\Spot  $spot
      * @return \Illuminate\Http\Response
@@ -99,39 +99,5 @@ class SpotsController extends Controller
     {
         $spot = Spot::where('slug', $spotSlug)->where('is_approved', true)->firstOrFail();
         return view('spots.show')->with(compact('spot'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Spot  $spot
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Spot $spot)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Spot  $spot
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Spot $spot)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Spot  $spot
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Spot $spot)
-    {
-        //
     }
 }

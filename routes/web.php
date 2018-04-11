@@ -24,12 +24,14 @@ Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
     Route::post('/spots/submissions/{spotId}', 'Admin\SpotsController@update');
 });
 
+/* Homepage */
+
 Route::get('/', 'HomeController@index')->name('page.home');
 
 /* Spots */
 
+Route::get('/spots/submeter', 'SpotsController@create')->name('spots.create');
 Route::post('/spots', 'SpotsController@store')->name('spots.store');
-Route::get('/spots/new', 'SpotsController@create')->name('spots.create');
 
 /* Countries */
 
@@ -45,10 +47,3 @@ Route::post('/contactos', 'ContactController@store')->name('contacts.store');
 /* About */
 
 Route::get('/sobre-nos', 'HomeController@about')->name('page.about');
-
-/* Emails test */
-
-// Route::get('/mailable', function () {
-//     $contactMessage = App\Spot::find(1);
-//     return new App\Mail\SpotSubmitted($contactMessage);
-// });
