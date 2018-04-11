@@ -24,15 +24,13 @@ Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
     Route::post('/spots/submissions/{spotId}', 'Admin\SpotsController@update');
 });
 
-// Route::get('/admin/submissions', 'DashboardController@dashboard');
-
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('page.home');
 
 /* Spots */
 
-Route::post('/spots', 'SpotsController@store');
+Route::post('/spots', 'SpotsController@store')->name('spots.store');
 Route::get('/spots/new', 'SpotsController@create')->name('spots.create');
-Route::get('/spots/{slug}', 'SpotsController@show');
+Route::get('/spots/{slug}', 'SpotsController@show')->name('spots.show');
 
 /* Countries */
 
@@ -43,7 +41,7 @@ Route::get('/paises/{countrySlug}', 'CountriesController@show')->name('countries
 /* Contacts */
 
 Route::get('/contactos', 'ContactController@show')->name('contacts.show');
-Route::post('/contactos', 'ContactController@store');
+Route::post('/contactos', 'ContactController@store')->name('contacts.store');
 
 /* About */
 
