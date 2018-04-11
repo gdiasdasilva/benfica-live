@@ -26,8 +26,13 @@ class SpotsController extends Controller
 
     public function getSubmissions()
     {
-        $notApprovedSpots = Spot::where('is_approved', false)->get();
-        $approvedSpots = Spot::where('is_approved', true)->orderBy('updated_at')->get();
+        $spots = Spot::with('country')
+                    ->orderBy('updated_at', 'DESC')
+                    ->get();
+
+        $notApprovedSpots = $spots->where('is_approved', false);
+        $approvedSpots = $spots->where('is_approved', true)->take(5);
+
         return view('admin.spots.submissions', compact('notApprovedSpots', 'approvedSpots'));
     }
 

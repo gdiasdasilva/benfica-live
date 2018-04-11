@@ -15,13 +15,15 @@ Route::get('/admin/login', ['as' => 'login', 'uses' => 'Auth\LoginController@sho
 Route::post('/admin/login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
 Route::get('/admin/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 
-Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function ()
 {
-    Route::get('/', 'Admin\DashboardController@dashboard');
-    Route::get('/spots', 'Admin\SpotsController@index');
-    Route::get('/spots/submissions', 'Admin\SpotsController@getSubmissions');
-    Route::get('/spots/submissions/{spotId}', 'Admin\SpotsController@show');
-    Route::post('/spots/submissions/{spotId}', 'Admin\SpotsController@update');
+    Route::get('/dashboard', 'DashboardController@dashboard')->name('admin.dashboard');
+    Route::get('/spots', 'SpotsController@index')->name('admin.spots.index');
+
+    Route::get('/spots/submissions', 'SpotsController@getSubmissions')->name('admin.spots.submissions');
+
+    Route::get('/spots/{spot}', 'SpotsController@show')->name('admin.spots.show');
+    Route::post('/spots/{spot}', 'SpotsController@update')->name('admin.spots.update');
 });
 
 /* Homepage */

@@ -9,9 +9,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <div class="box">
+            <div class="box box-danger">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Por aprovar</h3>
+                    <h3 class="box-title">Spots Por aprovar</h3>
                 </div>
                 <div class="box-body">
                     <table class="table table-bordered table-hover">
@@ -29,7 +29,7 @@
                                     <td>{{ $notApprovedSpot->name }}</td>
                                     <td>{{ $notApprovedSpot->country->name_pt }}</td>
                                     <td>{{ $notApprovedSpot->city }}</td>
-                                    <td><a class="btn btn-primary" href="/admin/spots/submissions/{{$notApprovedSpot->id}}">Ver</a></td>
+                                    <td><a class="btn btn-xs btn-primary" href="/admin/spots/submissions/{{$notApprovedSpot->id}}">Gerir</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -48,9 +48,9 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="box">
+            <div class="box box-success">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Aprovados</h3>
+                    <h3 class="box-title">Últimos Spots Aprovados</h3>
                 </div>
                 <div class="box-body">
                     <table class="table table-bordered table-hover">

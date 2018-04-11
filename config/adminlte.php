@@ -85,7 +85,7 @@ return [
     |
     */
 
-    'dashboard_url' => '/dashboard',
+    'dashboard_url' => 'admin/dashboard',
 
     'logout_url' => 'logout',
 
@@ -110,14 +110,19 @@ return [
     'menu' => [
         'NAVEGAÇÃO PRINCIPAL',
         [
-            'text'        => 'Spots',
-            'url'         => 'admin/spots',
-            'icon'        => 'map-pin',
+            'text'        => 'Dashboard',
+            'url'         => 'admin/dashboard',
+            'icon'        => 'dashboard',
         ],
         [
-            'text'        => 'Últimas submissões',
+            'text'        => 'Lista de Spots',
+            'url'         => 'admin/spots',
+            'icon'        => 'list',
+        ],
+        [
+            'text'        => 'Gestão de Spots',
             'url'         => 'admin/spots/submissions',
-            'icon'        => 'keyboard-o',
+            'icon'        => 'pencil',
         ],
     ],
 
