@@ -49,7 +49,7 @@
                 @endif
                 @if($spot->thumbnail_image)
                     <div id="image" class="container tab-pane @if(!is_null($spot->latitude) && !is_null($spot->longitude)) fade @else active @endif"><br>
-                        <div class="placeholder-image" style="background-image: url({{ asset('storage/'.$spot->thumbnail_image) }});"></div>
+                        <div class="placeholder-image" style="background-image: url({{ $spot->thumbnail_image }});"></div>
                     </div>
                 @endif
             </div>

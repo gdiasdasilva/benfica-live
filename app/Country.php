@@ -11,11 +11,6 @@ class Country extends Model
         return $this->hasMany(Spot::class);
     }
 
-    public function path()
-    {
-        return '/paises/' . $this->slug_pt;
-    }
-
     public function getRouteKeyName()
     {
         return 'slug_pt';

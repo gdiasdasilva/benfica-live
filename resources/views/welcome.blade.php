@@ -24,7 +24,7 @@
                 <div class="card">
                     <a href="{{ route('spots.show', ['countrySlug' => $spot->country->slug_pt, 'spotSlug' => $spot->slug]) }}">
                         @if ($spot->image)
-                            <img class="card-img-top" src="{{ asset('storage/'.$spot->image) }}" alt="Imagem do spot">
+                            <img class="card-img-top" src="{{ $spot->image }}" alt="Imagem do spot">
                         @else
                             <img class="card-img-top" src="images/placeholder-restaurante.jpeg" alt="Imagem do spot">
                         @endif

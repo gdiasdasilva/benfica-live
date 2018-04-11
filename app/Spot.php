@@ -27,13 +27,18 @@ class Spot extends Model
         return 'slug';
     }
 
-    public function path()
-    {
-        return '/paises/' . $this->country->slug_pt . '/spots/' . $this->slug;
-    }
-
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function getImageAttribute($imagePath)
+    {
+        return ($imagePath ? asset("storage/$imagePath") : null);
+    }
+
+    public function getThumbnailImageAttribute($thumbnailImagePath)
+    {
+        return ($thumbnailImagePath ? asset("storage/$thumbnailImagePath") : null);
     }
 }
