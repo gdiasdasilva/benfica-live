@@ -30,24 +30,24 @@ Route::get('/', 'HomeController@index');
 
 /* Spots */
 
-// Route::get('/spots', 'SpotsController@index');
 Route::post('/spots', 'SpotsController@store');
-Route::get('/spots/new', 'SpotsController@create');
+Route::get('/spots/new', 'SpotsController@create')->name('spots.create');
 Route::get('/spots/{slug}', 'SpotsController@show');
 
 /* Countries */
 
-Route::get('/paises', 'CountriesController@index');
+Route::get('/paises', 'CountriesController@index')->name('countries.index');
 Route::get('/paises/{countrySlug}/spots/{spotSlug}', 'SpotsController@show')->name('spots.show');
-Route::get('/paises/{countrySlug}', 'CountriesController@show');
+Route::get('/paises/{countrySlug}', 'CountriesController@show')->name('countries.show');
 
 /* Contacts */
 
-Route::get('/contactos', 'ContactController@show');
+Route::get('/contactos', 'ContactController@show')->name('contacts.show');
 Route::post('/contactos', 'ContactController@store');
 
 /* About */
-Route::get('/sobre-nos', 'HomeController@about');
+
+Route::get('/sobre-nos', 'HomeController@about')->name('page.about');
 
 /* Emails test */
 

@@ -7,16 +7,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/paises">Spots</a>
+                <a class="nav-link" href="{{ route('countries.index') }}">Spots</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/contactos">Contactos</a>
+                <a class="nav-link" href="{{ route('contacts.show') }}">Contactos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/sobre-nos">Sobre</a>
+                <a class="nav-link" href="{{ route('page.about') }}">Sobre</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link btn btn-danger-white-border" href="/spots/new">Submeter um Spot</a>
+                <a class="nav-link btn btn-danger-white-border" href="{{ route('spots.create') }}">Submeter um Spot</a>
             </li>
         </ul>
     </div>

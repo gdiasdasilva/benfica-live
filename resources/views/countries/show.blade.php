@@ -16,7 +16,7 @@
                 </a>
             @endforeach
         </div>
-        <a class="btn btn-danger more-countries" href="/paises">Ver outros países</a>
+        <a class="btn btn-danger more-countries" href="{{ route('countries.index') }}">Ver outros países</a>
     </div>
 </div>
 

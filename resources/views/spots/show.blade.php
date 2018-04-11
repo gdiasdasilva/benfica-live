@@ -29,7 +29,7 @@
             @endif
         @endif
 
-        <a class="btn btn-danger" href="{{ $spot->country->path() }}">Ver mais em {{ $spot->country->name_pt }}</a>
+        <a class="btn btn-danger" href="{{ route('countries.show', $spot->country->slug_pt) }}">Ver mais em {{ $spot->country->name_pt }}</a>
     </div>
     <div class="col-md-6 image-map-container">
         @if ((!is_null($spot->latitude) && !is_null($spot->longitude)) || $spot->thumbnail_image)
