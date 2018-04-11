@@ -119,11 +119,6 @@ return [
             'url'         => 'admin/spots',
             'icon'        => 'list',
         ],
-        [
-            'text'        => 'Gestão de Spots',
-            'url'         => 'admin/spots/submissions',
-            'icon'        => 'pencil',
-        ],
     ],
 
     /*

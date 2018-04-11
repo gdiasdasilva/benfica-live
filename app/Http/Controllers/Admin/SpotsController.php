@@ -18,26 +18,11 @@ class SpotsController extends Controller
     public function index()
     {
         $spots = Spot::with('country')
+                    ->orderBy('is_approved', 'ASC')
                     ->orderBy('updated_at', 'DESC')
                     ->paginate(10);
 
         return view('admin.spots.index', compact('spots'));
-    }
-
-    /**
-     * List of approved and not approved spots for management
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function getSubmissions()
-    {
-        $spots = Spot::with('country')
-                    ->orderBy('updated_at', 'DESC')
-                    ->get();
-
-        $notApprovedSpots = $spots->where('is_approved', false);
-        $approvedSpots = $spots->where('is_approved', true)->take(5);
-
-        return view('admin.spots.submissions', compact('notApprovedSpots', 'approvedSpots'));
     }
 
     /**
@@ -61,6 +46,12 @@ class SpotsController extends Controller
         return view('admin.spots.edit', compact('spot', 'countries_list'));
     }
 
+    /**
+     * Submit a new form to update a Spot
+     * @param Request $request
+     * @param $spotId
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, $spotId)
     {
         $request->validate([
@@ -68,7 +59,8 @@ class SpotsController extends Controller
             'city' => 'required|max:35',
             'email' => 'email|nullable',
             'country_id' => 'required|exists:countries,id',
-            'website' => 'url|nullable'
+            'website' => 'url|nullable',
+            'image' => 'image',
         ]);
 
         $latitude = null;
@@ -100,11 +92,11 @@ class SpotsController extends Controller
             'website' => $request->get('website'),
             'latitude' => $latitude,
             'longitude' => $longitude,
-            'is_approved' => true,
+            'is_approved' => $request->has('approved') ? true : false,
         ]);
 
         $spot->save();
 
-        return redirect(route('admin.spots.submissions'))->with('success', "Spot $spot->name editado e aprovado com sucesso.");
+        return redirect(route('admin.spots.index'))->with('success', "Spot $spot->name gravado com sucesso.");
     }
 }

@@ -21,6 +21,7 @@
                                 <th>País</th>
                                 <th>Cidade</th>
                                 <th>Estado</th>
+                                <th>Acções</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -31,18 +32,18 @@
                                     <td>{{ $spot->city }}</td>
                                     <td class="">
                                         <span class="badge {{ $spot->is_approved ? 'bg-green' : 'bg-red' }}">{{ $spot->is_approved ? 'Aprovado' : 'Por aprovar' }}</span>
+                                        @if (!($spot->latitude && $spot->longitude))
+                                            <span class="badge bg-yellow">Lat/Long</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-xs btn-primary" href="{{ route('admin.spots.edit', $spot->id) }}">
+                                            Gerir
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Nome</th>
-                                <th>País</th>
-                                <th>Cidade</th>
-                                <th>Estado</th>
-                            </tr>
-                        </tfoot>
                     </table>
 
                     {{ $spots->links() }}
