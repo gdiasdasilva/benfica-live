@@ -3,7 +3,7 @@
 @section('title', 'Lista de Spots')
 
 @section('content_header')
-    <h1>Lista de Spots</h1>
+
 @stop
 
 @section('content')
@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Default Box Example</h3>
+                    <h3 class="box-title">Lista de Spots</h3>
                 </div>
                 <div class="box-body">
                     <table class="table table-bordered table-hover">
@@ -44,6 +44,8 @@
                             </tr>
                         </tfoot>
                     </table>
+
+                    {{ $spots->links() }}
                 </div>
             </div>
         </div>

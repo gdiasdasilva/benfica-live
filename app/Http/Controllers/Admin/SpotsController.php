@@ -11,9 +11,16 @@ use App\Country;
 
 class SpotsController extends Controller
 {
+    /**
+     * List of all Spots ordered by updated_at date
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
-        $spots = Spot::all();
+        $spots = Spot::with('country')
+                    ->orderBy('updated_at', 'DESC')
+                    ->paginate(10);
+
         return view('admin.spots.index', compact('spots'));
     }
 
