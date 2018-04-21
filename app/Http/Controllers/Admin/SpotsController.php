@@ -18,6 +18,7 @@ class SpotsController extends Controller
     {
         $spots = Spot::with('country')
                     ->orderBy('is_approved', 'ASC')
+                    ->orderBy('latitude', 'ASC')
                     ->orderBy('updated_at', 'DESC')
                     ->paginate(10);
 
