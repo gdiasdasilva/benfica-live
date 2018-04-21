@@ -13,7 +13,6 @@
 
 Route::get('/admin/login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
 Route::post('/admin/login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
-Route::get('/admin/logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function ()
 {
@@ -22,6 +21,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::get('/spots/{spotId}/edit', 'SpotsController@edit')->name('admin.spots.edit');
     Route::post('/spots/{spotId}', 'SpotsController@update')->name('admin.spots.update');
 });
+
+Route::get('/admin/logout', 'Auth\LoginController@logout')->middleware('auth');
 
 /* Homepage */
 

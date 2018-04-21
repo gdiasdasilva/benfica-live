@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 use DB;
 use App\Spot;
-use App\Country;
 
 class SpotsController extends Controller
 {
@@ -27,7 +26,7 @@ class SpotsController extends Controller
 
     /**
      * Show form to complete a Spot submission data
-     * @param $spot
+     * @param $spotId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($spotId)

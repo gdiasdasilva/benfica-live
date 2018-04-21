@@ -87,11 +87,11 @@ return [
 
     'dashboard_url' => 'admin/dashboard',
 
-    'logout_url' => 'logout',
+    'logout_url' => 'admin/logout',
 
-    'logout_method' => null,
+    'logout_method' => 'GET',
 
-    'login_url' => 'login',
+    'login_url' => 'admin/login',
 
     'register_url' => null,
 
