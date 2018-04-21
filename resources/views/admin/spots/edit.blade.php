@@ -94,6 +94,16 @@
                                 </div>
                             </div>
                         </form>
+
+                        <form action="{{ route('admin.spots.destroy', $spot->id) }}" method="POST">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-md btn-danger">Apagar</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

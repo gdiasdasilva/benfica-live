@@ -18,8 +18,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
 {
     Route::get('/dashboard', 'DashboardController@dashboard')->name('admin.dashboard');
     Route::get('/spots', 'SpotsController@index')->name('admin.spots.index');
+
     Route::get('/spots/{spotId}/edit', 'SpotsController@edit')->name('admin.spots.edit');
     Route::post('/spots/{spotId}', 'SpotsController@update')->name('admin.spots.update');
+
+    Route::delete('/spots/{spotId}', 'SpotsController@destroy')->name('admin.spots.destroy');
 });
 
 Route::get('/admin/logout', 'Auth\LoginController@logout')->middleware('auth');
