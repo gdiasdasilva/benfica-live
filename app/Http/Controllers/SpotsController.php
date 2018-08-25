@@ -29,7 +29,7 @@ class SpotsController extends Controller
             ->orderBy('name_pt', 'asc')
             ->get();
 
-        return view('spots.create')->with(compact('countries_list'));
+        return view('spots.create', compact('countries_list'));
     }
 
     /**
@@ -45,7 +45,7 @@ class SpotsController extends Controller
             'city' => 'required|max:35',
             'email' => 'email|nullable',
             'country_id' => 'required|exists:countries,id',
-            'spot_image' => 'image|nullable',
+            'spot_image' => 'image|nullable|max:2000',
             'website' => 'url|nullable'
         ]);
 
