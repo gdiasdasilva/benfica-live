@@ -65,6 +65,8 @@ return [
         'name' => 'benfica.live'
     ],
 
+    'status' => env('MAIL_STATUS', false),
+
     /*
     |--------------------------------------------------------------------------
     | E-Mail Encryption Protocol

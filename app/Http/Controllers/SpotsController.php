@@ -84,9 +84,11 @@ class SpotsController extends Controller
             'website' => $request->has('website') ? $request->input('website') : null,
         ]);
 
-        Mail::to(config('mail.to')['address'])->send(new SpotSubmitted($spot));
+        if (config('mail.status') || app()->environment(['production'])) {
+            Mail::to(config('mail.to')['address'])->send(new SpotSubmitted($spot));
+        }
 
-        return redirect('/')->with('success', "Spot $name submetido com sucesso. Será publicado após ser revisto e aprovado. Obrigado!");
+        return redirect()->route('home')->with('success', "Spot $name submetido com sucesso. Será publicado após ser revisto e aprovado. Obrigado!");
     }
 
     /**
