@@ -95,11 +95,16 @@ class SpotsController extends Controller
             'thumbnail_image' => $thumbnailPath,
         ]);
 
-        if (config('mail.status') || app()->environment(['production'])) {
-            Mail::to(config('mail.to')['address'])->send(new SpotSubmitted($spot));
+        $recipientAddress = config('mail.to')['address'];
+
+        if ($recipientAddress && (config('mail.status') || app()->environment(['production']))) {
+            // Send e-mail to admin alerting about new spot submission
+            Mail::to($recipientAddress)->send(new SpotSubmitted($spot));
         }
 
-        return redirect()->route('home')->with('success', "<p>Spot <strong>$name</strong> submetido com sucesso!</p><p>Será publicado em breve, após revisão por parte da nossa equipa. Obrigado!</p>");
+        return redirect()->route('home')->with('success',
+            "<p>Spot <strong>$name</strong> submetido com sucesso!</p><p>Será publicado em breve, após revisão por
+                parte da nossa equipa. Obrigado!</p>");
     }
 
     /**

@@ -61,11 +61,11 @@ return [
     ],
 
     'to' => [
-        'address' => env('MAIL_TO_ADDRESS'),
+        'address' => env('MAIL_TO_ADDRESS', null),
         'name' => 'benfica.live'
     ],
 
-    'status' => env('MAIL_STATUS', false),
+    'status' => env('SENDING_EMAILS_ENABLED', false),
 
     /*
     |--------------------------------------------------------------------------

@@ -34,6 +34,6 @@ class SpotSubmitted extends Mailable
         return $this
             ->from('no-reply@benfica.live', 'No Reply')
             ->subject('Nova submissão de Spot - benfica.live')
-            ->view('emails.spot');
+            ->markdown('emails.spot-submitted-admin');
     }
 }

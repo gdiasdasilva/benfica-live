@@ -81,3 +81,15 @@ Route::get('/sobre-nos', [
     'as' => 'page.about',
     'uses' => 'HomeController@about'
 ]);
+
+if (app()->environment() === 'local') {
+    Route::get('/mailables/spots/{id}', function ($spotId) {
+        $spot = App\Spot::findOrFail($spotId);
+        return new App\Mail\SpotSubmitted($spot);
+    });
+
+    Route::get('/mailables/contacts/{id}', function ($contactId) {
+        $contactMessage= App\ContactMessage::findOrFail($contactId);
+        return new App\Mail\ContactSubmitted($contactMessage);
+    });
+}
