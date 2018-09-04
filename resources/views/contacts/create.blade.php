@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group">
                     <label class="col-form-label" for="formContactMessage">Mensagem *</label>
-                    <textarea id="formContactMessage" class="form-control" name="message" rows="8" cols="80" placeholder="Mensagem" required value="{{ old('message') }}"></textarea>
+                    <textarea id="formContactMessage" class="form-control" name="message" rows="8" cols="80" placeholder="Mensagem" required>{{ old('message') }}</textarea>
                 </div>
 
                 @captcha()

@@ -35,6 +35,6 @@ class ContactSubmitted extends Mailable
         return $this
             ->from($this->contactMessage->email, $this->contactMessage->name)
             ->subject('Formulário de Contacto - benfica.live')
-            ->view('emails.message');
+            ->markdown('emails.message-submitted-admin');
     }
 }
