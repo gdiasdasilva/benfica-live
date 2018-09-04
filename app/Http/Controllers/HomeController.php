@@ -16,18 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $recentSpots = Spot::with('country')
-            ->where('is_approved', true)
-            ->where('image', '!=', null)
-            ->orderBy('created_at', 'desc')
-            ->limit(3)
-            ->get([
-                'name',
-                'slug',
-                'city',
-                'thumbnail_image',
-                'country_id'
-            ]);
+        $recentSpots = Spot::mostRecent()->get();
 
         $spotsCount = Spot::count();
 

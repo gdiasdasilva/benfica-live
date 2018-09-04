@@ -3,7 +3,11 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Spot::class, function (Faker $faker) {
-    $fakeImage = $faker->image('public/storage/spots', 400, 400, 'sports', false);
+    if (app()->environment() !== 'testing') {
+        $fakeImage = $faker->image('public/storage/spots', 400, 400, 'sports', false);
+    } else {
+        $fakeImage = '';
+    }
 
     return [
         'name' => $faker->company,
