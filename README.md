@@ -1,8 +1,16 @@
 # benfica-live
 
-<a href="http://benfica.live" target="_blank">Benfica.live</a> is a platform where Sport Lisboa e Benfica's fans can share spots to assist to the matches while abroad.
+## The project
 
-It's built with Laravel 5.
+<a href="https://benfica.live" target="_blank">benfica.live</a> is a platform created to gather data that otherwise would be too dispersed.
+
+In this platform, Sport Lisboa e Benfica's fans can share spots to assist to the matches while abroad.
+
+It's built with PHP, using the Laravel framework. We're trying to use the most recent technologies and standards.
+
+Feel free to give us feedback and/or contribute directly to the project! Beit on the frontend or backend.
+
+Some screens of the web app are shared below:
 
 ## Screenshots
 
@@ -13,11 +21,6 @@ It's built with Laravel 5.
 ### Countries listing
 
 <img src="https://i.imgur.com/abVrijA.png"/>
-
-
-### Country detail
-
-<img src="https://i.imgur.com/6GeRgXD.png"/>
 
 ### Other pages
 
