@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Spot;
-use DB;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Image;
-use Storage;
-
 use App\Mail\SpotSubmitted;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class SpotsController extends Controller
 {
@@ -20,7 +19,7 @@ class SpotsController extends Controller
      */
     public function create()
     {
-        $countries_list = DB::table('countries')
+        $countries = DB::table('countries')
             ->select('id', 'name_pt')
             ->where('continent_id', 2)
             ->orWhere('continent_id', 3)
@@ -29,7 +28,7 @@ class SpotsController extends Controller
             ->orderBy('name_pt', 'asc')
             ->get();
 
-        return view('spots.create', compact('countries_list'));
+        return view('spots.create', compact('countries'));
     }
 
     /**
@@ -41,47 +40,59 @@ class SpotsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:60',
-            'city' => 'required|max:35',
+            'name' => 'required|string|max:60',
+            'city' => 'required|string|max:35',
+            'country' => 'required|exists:countries,id',
+            'address' => 'required|string|nullable|max:255',
+            'phone-number' => 'string|nullable|max:20',
             'email' => 'email|nullable',
-            'country_id' => 'required|exists:countries,id',
-            'spot_image' => 'image|nullable|max:2000',
-            'website' => 'url|nullable'
+            'website' => 'url|nullable',
+            'image' => 'image|nullable|max:2000',
         ]);
 
-        $image = $request->file('spot_image');
+        $image = $request->file('image');
         $imagePath = null;
         $thumbnailPath = null;
 
         if ($image) {
             $imagePath = $image->hashName('spots');
+
             $thumbnailPath = $image->hashName('spots');
             $thumbnailPathExploded = explode('.',$thumbnailPath);
             $thumbnailPath = $thumbnailPathExploded[0] . '-thumbnail.' . $thumbnailPathExploded[1];
 
             $img = Image::make($image);
-            $img->fit(350, 240);
+            $img->fit(500, 450);
 
             $imgThumbnail = Image::make($image);
-            $imgThumbnail->fit(500, 450);
+            $imgThumbnail->fit(350, 240);
 
             Storage::put($imagePath, (string) $img->encode());
             Storage::put($thumbnailPath, (string) $imgThumbnail->encode());
         }
 
-        $name = $request['name'];
+        $name = $request->get('name');
+
+        $slug = str_slug($name);
+        $slugIndex = 0;
+
+        // If slug already in use, add an index to the slug
+        while (Spot::where('slug', $slug)->count()) {
+            $slugIndex++;
+            $slug = "$slug-$slugIndex";
+        }
 
         $spot = Spot::create([
             'name' => $name,
-            'slug' => str_slug($name),
-            'address' => $request->has('address') ? $request->input('address') : null,
-            'email' => $request->has('email') ? $request->input('email') : null,
-            'phone_number' => $request->has('phone_number') ? $request->input('phone_number') : null,
-            'city' => $request->has('city') ? $request->input('city') : null,
-            'country_id' => $request->has('country_id') ? $request->input('country_id') : null,
+            'slug' => $slug,
+            'country_id' => $request->get('country'),
+            'city' => $request->get('city'),
+            'address' => $request->get('address'),
+            'email' => $request->get('email'),
+            'phone_number' => $request->get('phone-number'),
+            'website' => $request->get('website'),
             'image' => $imagePath,
             'thumbnail_image' => $thumbnailPath,
-            'website' => $request->has('website') ? $request->input('website') : null,
         ]);
 
         if (config('mail.status') || app()->environment(['production'])) {

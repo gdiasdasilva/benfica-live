@@ -32,13 +32,13 @@
         <a class="btn btn-danger" href="{{ route('countries.show', $spot->country->slug_pt) }}">Ver mais em {{ $spot->country->name_pt }}</a>
     </div>
     <div class="col-md-6 image-map-container">
-        @if ((!is_null($spot->latitude) && !is_null($spot->longitude)) || $spot->thumbnail_image)
+        @if ((!is_null($spot->latitude) && !is_null($spot->longitude)) || $spot->image)
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link @if(!is_null($spot->latitude) && !is_null($spot->longitude)) active @else disabled @endif" data-toggle="tab" href="#map">Mapa</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @if(!$spot->thumbnail_image) disabled @endif @if(!(!is_null($spot->latitude) && !is_null($spot->longitude)) && $spot->thumbnail_image) active @endif" data-toggle="tab" href="#image">Fotografias</a>
+                    <a class="nav-link @if(!$spot->image) disabled @endif @if(!(!is_null($spot->latitude) && !is_null($spot->longitude)) && $spot->image) active @endif" data-toggle="tab" href="#image">Fotografias</a>
                 </li>
             </ul>
             <div class="tab-content">
@@ -47,9 +47,9 @@
                         <google-map lat="{{ $spot->latitude }}" lng="{{ $spot->longitude }}"></google-map>
                     </div>
                 @endif
-                @if($spot->thumbnail_image)
+                @if($spot->image)
                     <div id="image" class="container tab-pane @if(!is_null($spot->latitude) && !is_null($spot->longitude)) fade @else active @endif"><br>
-                        <div class="placeholder-image" style="background-image: url({{ $spot->thumbnail_image }});"></div>
+                        <div class="placeholder-image" style="background-image: url({{ $spot->image }});"></div>
                     </div>
                 @endif
             </div>

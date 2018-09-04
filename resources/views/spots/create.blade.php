@@ -18,14 +18,14 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label class="col-form-label" for="formSpotCity">Cidade *</label>
-                        <input type="text" class="form-control" id="formSpotCity" placeholder="Cidade *" name="city" required value="{{ old('city') }}">
+                        <input type="text" class="form-control" id="formSpotCity" placeholder="Cidade *" name="city" required value="{{ old('city') }}" maxlength="35">
                     </div>
                     <div class="form-group col-md-6">
                         <label class="col-form-label" for="formSpotCountry">País *</label>
-                        <select id="formSpotCountry" class="form-control" name="country_id" required>
-                            <option selected>Escolher...</option>
-                            @foreach ($countries_list as $country)
-                                <option value="{{ $country->id }}" @if($country->id == old('country_id')) selected @endif>
+                        <select id="formSpotCountry" class="form-control" name="country" required>
+                            <option selected disabled>Escolher...</option>
+                            @foreach ($countries as $country)
+                                <option value="{{ $country->id }}" {{ ($country->id == old('country')) ? 'selected' : '' }}>
                                     {{ $country->name_pt }}
                                 </option>
                             @endforeach
@@ -34,12 +34,12 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label class="col-form-label" for="formSpotAddress">Morada</label>
-                        <input type="text" class="form-control" id="formSpotAddress" placeholder="Morada" name="address" value="{{ old('address') }}">
+                        <label class="col-form-label" for="formSpotAddress">Morada *</label>
+                        <input type="text" class="form-control" id="formSpotAddress" placeholder="Morada" name="address" required value="{{ old('address') }}">
                     </div>
                     <div class="form-group col-md-6">
                         <label class="col-form-label" for="formSpotPhone">Telefone</label>
-                        <input type="tel" class="form-control" id="formSpotPhone" placeholder="Telefone" name="phone_number" value="{{ old('phone_number') }}">
+                        <input type="text" class="form-control" id="formSpotPhone" placeholder="Telefone" name="phone-number" value="{{ old('phone-number') }}">
                     </div>
                 </div>
                 <div class="form-row">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="form-group">
                     <label class="col-form-label" for="formSpotImage">Imagem</label>
-                    <input type="file" class="form-control-file" id="formSpotImage" name="spot_image">
+                    <input type="file" class="form-control-file" id="formSpotImage" name="image" accept="image/*">
                 </div>
                 <button type="submit" class="btn btn-danger">Submeter</button>
             </form>
