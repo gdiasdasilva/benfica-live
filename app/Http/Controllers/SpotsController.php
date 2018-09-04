@@ -105,12 +105,16 @@ class SpotsController extends Controller
     /**
      * Display the specified Spot.
      *
-     * @param  \App\Spot  $spot
+     * @param $countrySlug
+     * @param $spotSlug
      * @return \Illuminate\Http\Response
      */
-    public function show($countrySlug, $spotSlug)
+    public function show(String $countrySlug, String $spotSlug)
     {
-        $spot = Spot::where('slug', $spotSlug)->where('is_approved', true)->firstOrFail();
-        return view('spots.show')->with(compact('spot'));
+        $spot = Spot::where('slug', $spotSlug)
+            ->where('is_approved', true)
+            ->firstOrFail();
+
+        return view('spots.show', compact('spot'));
     }
 }
