@@ -23,7 +23,7 @@
             <div class="col-md-4 last-submission-entry">
                 <div class="card">
                     <a href="{{ route('spots.show', ['countrySlug' => $spot->country->slug_pt, 'spotSlug' => $spot->slug]) }}">
-                        @if ($spot->image)
+                        @if ($spot->thumbnail_image)
                             <img class="card-img-top" src="{{ $spot->thumbnail_image }}" alt="Imagem do spot">
                         @else
                             <img class="card-img-top" src="images/placeholder-restaurante.jpeg" alt="Imagem do spot">

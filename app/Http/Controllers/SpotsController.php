@@ -99,7 +99,7 @@ class SpotsController extends Controller
             Mail::to(config('mail.to')['address'])->send(new SpotSubmitted($spot));
         }
 
-        return redirect()->route('home')->with('success', "Spot $name submetido com sucesso. Será publicado após ser revisto e aprovado. Obrigado!");
+        return redirect()->route('home')->with('success', "<p>Spot <strong>$name</strong> submetido com sucesso!</p><p>Será publicado em breve, após revisão por parte da nossa equipa. Obrigado!</p>");
     }
 
     /**
