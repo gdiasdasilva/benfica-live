@@ -1,4 +1,4 @@
-## benfica-live
+<img src="https://i.imgur.com/T0Gc1LV.png">
 
 <a href="https://benfica.live" target="_blank">benfica.live</a> is a platform created to gather data that otherwise would be too dispersed.
 
