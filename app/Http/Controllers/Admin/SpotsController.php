@@ -18,6 +18,7 @@ class SpotsController extends Controller
     {
         $spots = Spot::with('country')
                     ->orderBy('is_approved', 'ASC')
+                    ->orderBy('latitude', 'ASC')
                     ->orderBy('updated_at', 'DESC')
                     ->paginate(10);
 
@@ -96,6 +97,21 @@ class SpotsController extends Controller
 
         $spot->save();
 
-        return redirect(route('admin.spots.index'))->with('success', "Spot $spot->name gravado com sucesso.");
+        return redirect()->route('admin.spots.index')->with('success', "Spot $spot->name gravado com sucesso.");
+    }
+
+    /**
+     * Delete an existing spot
+     * @param $spotId
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($spotId)
+    {
+        $spot = Spot::findOrFail($spotId);
+        $spotName = $spot->name;
+
+        $spot->delete();
+
+        return redirect()->route('admin.spots.index')->with('success', "Spot $spotName apagado com sucesso.");
     }
 }

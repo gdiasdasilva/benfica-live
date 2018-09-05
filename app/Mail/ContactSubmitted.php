@@ -18,7 +18,7 @@ class ContactSubmitted extends Mailable
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param ContactMessage $contactMessage
      */
     public function __construct(ContactMessage $contactMessage)
     {
@@ -34,7 +34,7 @@ class ContactSubmitted extends Mailable
     {
         return $this
             ->from($this->contactMessage->email, $this->contactMessage->name)
-            ->subject('Formulário de contacto - benfica.live')
-            ->view('emails.message');
+            ->subject('Formulário de Contacto - benfica.live')
+            ->markdown('emails.message-submitted-admin');
     }
 }

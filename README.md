@@ -1,24 +1,38 @@
-# benfica-live
+<img src="https://i.imgur.com/T0Gc1LV.png">
 
-<a href="http://benfica.live" target="_blank">Benfica.live</a> is a platform where Sport Lisboa e Benfica's fans can share spots to assist to the matches while abroad.
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gdiasdasilva/benfica-live/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/gdiasdasilva/benfica-live/?branch=develop)
+[![Build Status](https://scrutinizer-ci.com/g/gdiasdasilva/benfica-live/badges/build.png?b=develop)](https://scrutinizer-ci.com/g/gdiasdasilva/benfica-live/build-status/develop)
 
-It's built with Laravel 5.
+<a href="https://benfica.live" target="_blank">benfica.live</a> is a platform created to gather data that otherwise would be too dispersed.
 
-## Screenshots
+In this platform, Sport Lisboa e Benfica's fans can share spots to assist to the matches while abroad.
 
-### Homepage
+We're trying to use the most recent technologies and standards.
+
+Current stack:
+
+* Laravel 5
+* Vue.js
+* Sass
+
+Feel free to give us feedback and/or contribute directly to the project! Beit on the frontend or backend.
+
+Some screens of the web app are shared below:
+
+---
+
+#### Homepage
 
 <img src="https://i.imgur.com/OfFHRCg.png"/>
 
-### Countries listing
+---
+
+#### Countries listing
 
 <img src="https://i.imgur.com/abVrijA.png"/>
 
+---
 
-### Country detail
-
-<img src="https://i.imgur.com/6GeRgXD.png"/>
-
-### Other pages
+#### Other pages
 
 <img src="https://i.imgur.com/ID8zwVg.png"/>

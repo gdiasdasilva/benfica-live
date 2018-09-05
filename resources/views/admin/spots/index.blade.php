@@ -28,7 +28,7 @@
                             @foreach ($spots as $spot)
                                 <tr>
                                     <td>{{ $spot->name }}</td>
-                                    <td>{{ $spot->country->name_pt }}</td>
+                                    <td>{{ $spot->country->name_pt }} {{ $spot->country->emoji }}</td>
                                     <td>{{ $spot->city }}</td>
                                     <td class="">
                                         <span class="badge {{ $spot->is_approved ? 'bg-green' : 'bg-red' }}">{{ $spot->is_approved ? 'Aprovado' : 'Por aprovar' }}</span>
