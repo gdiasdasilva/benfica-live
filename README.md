@@ -7,7 +7,13 @@
 
 In this platform, Sport Lisboa e Benfica's fans can share spots to assist to the matches while abroad.
 
-It's built with PHP, using the Laravel framework. We're trying to use the most recent technologies and standards.
+We're trying to use the most recent technologies and standards.
+
+Current stack:
+
+* Laravel 5
+* Vue.js
+* Sass
 
 Feel free to give us feedback and/or contribute directly to the project! Beit on the frontend or backend.
 
