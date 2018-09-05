@@ -15,7 +15,7 @@ class SpotsController extends Controller
     /**
      * Show the form for creating a new Spot.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
@@ -34,8 +34,8 @@ class SpotsController extends Controller
     /**
      * Store a newly created Spot in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -110,9 +110,9 @@ class SpotsController extends Controller
     /**
      * Display the specified Spot.
      *
-     * @param $countrySlug
-     * @param $spotSlug
-     * @return \Illuminate\Http\Response
+     * @param String $countrySlug
+     * @param String $spotSlug
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(String $countrySlug, String $spotSlug)
     {

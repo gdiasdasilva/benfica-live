@@ -8,11 +8,10 @@ use App\Country;
 
 class HomeController extends Controller
 {
-
     /**
-     * Show the application dashboard.
+     * Show the application dashboard
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -27,6 +26,11 @@ class HomeController extends Controller
         return view('welcome', compact('recentSpots', 'spotsCount', 'countriesCount'));
     }
 
+    /**
+     * Show the about us page.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function about()
     {
         $countriesWithSpots = Country::whereHas('spots', function($spot) {
