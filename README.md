@@ -1,6 +1,4 @@
-# benfica-live
-
-## The project
+## benfica-live
 
 <a href="https://benfica.live" target="_blank">benfica.live</a> is a platform created to gather data that otherwise would be too dispersed.
 
@@ -12,16 +10,20 @@ Feel free to give us feedback and/or contribute directly to the project! Beit on
 
 Some screens of the web app are shared below:
 
-## Screenshots
+---
 
-### Homepage
+#### Homepage
 
 <img src="https://i.imgur.com/OfFHRCg.png"/>
 
-### Countries listing
+---
+
+#### Countries listing
 
 <img src="https://i.imgur.com/abVrijA.png"/>
 
-### Other pages
+---
+
+#### Other pages
 
 <img src="https://i.imgur.com/ID8zwVg.png"/>
