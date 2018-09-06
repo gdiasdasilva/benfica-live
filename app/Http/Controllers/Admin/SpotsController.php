@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
-use DB;
 use App\Spot;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class SpotsController extends Controller
 {
@@ -17,10 +18,10 @@ class SpotsController extends Controller
     public function index()
     {
         $spots = Spot::with('country')
-                    ->orderBy('is_approved', 'ASC')
-                    ->orderBy('latitude', 'ASC')
-                    ->orderBy('updated_at', 'DESC')
-                    ->paginate(10);
+            ->orderBy('is_approved', 'ASC')
+            ->orderBy('latitude', 'ASC')
+            ->orderBy('updated_at', 'DESC')
+            ->paginate(10);
 
         return view('admin.spots.index', compact('spots'));
     }
@@ -30,11 +31,11 @@ class SpotsController extends Controller
      * @param $spotId
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($spotId)
+    public function edit(String $spotId)
     {
         $spot = Spot::findOrFail($spotId);
 
-        $countries_list = DB::table('countries')
+        $countriesList = DB::table('countries')
             ->select('id', 'name_pt')
             ->where('continent_id', 2)
             ->orWhere('continent_id', 3)
@@ -43,7 +44,7 @@ class SpotsController extends Controller
             ->orderBy('name_pt', 'asc')
             ->get();
 
-        return view('admin.spots.edit', compact('spot', 'countries_list'));
+        return view('admin.spots.edit', compact('spot', 'countriesList'));
     }
 
     /**
@@ -55,49 +56,71 @@ class SpotsController extends Controller
     public function update(Request $request, $spotId)
     {
         $request->validate([
-            'name' => 'required|max:60',
-            'city' => 'required|max:35',
+            'name' => 'required|string|max:60',
+            'city' => 'required|string|max:35',
+            'country' => 'required|exists:countries,id',
+            'address' => 'required|string|nullable|max:255',
+            'phone-number' => 'string|nullable|max:20',
             'email' => 'email|nullable',
-            'country_id' => 'required|exists:countries,id',
             'website' => 'url|nullable',
-            'image' => 'image',
+            'latitude-longitude' => 'string|nullable',
+            'image' => 'image|nullable|max:2000',
         ]);
 
         $latitude = null;
         $longitude = null;
 
-        if ($request->has('latitudeLongitude') && $request->get('latitudeLongitude')) {
-            $latitudeLongitude = explode(",", $request->get('latitudeLongitude'));
+        // If latitude/longitude were submitted, separate the values
+        if ($request->has('latitude-longitude') && $request->get('latitude-longitude')) {
+            $latitudeLongitude = explode(',', $request->get('latitude-longitude'));
 
-            if (count($latitudeLongitude) == 2) {
+            if (isset($latitudeLongitude[0], $latitudeLongitude[1])) {
                 $latitude = $latitudeLongitude[0];
                 $longitude = $latitudeLongitude[1];
             }
         }
 
-        if (!($latitude && $longitude)) {
-            $latitude = null;
-            $longitude = null;
-        }
-
         $spot = Spot::findOrFail($spotId);
 
-        $spot->update([
+        $dataToUpdate = [
             'name' => $request->get('name'),
             'address' => $request->get('address'),
             'email' => $request->get('email'),
-            'phone_number' => $request->get('phone_number'),
+            'phone_number' => $request->get('phone-number'),
             'city' => $request->get('city'),
-            'country_id' => $request->get('country_id'),
+            'country_id' => $request->get('country'),
             'website' => $request->get('website'),
             'latitude' => $latitude,
             'longitude' => $longitude,
             'is_approved' => $request->has('approved') ? true : false,
-        ]);
+            'is_featured' => $request->has('featured') ? true : false,
+        ];
 
-        $spot->save();
+        $image = $request->file('image');
 
-        return redirect()->route('admin.spots.index')->with('success', "Spot $spot->name gravado com sucesso.");
+        if ($image) {
+            $imagePath = $image->hashName('spots');
+
+            $thumbnailPath = $image->hashName('spots');
+            $thumbnailPathExploded = explode('.',$thumbnailPath);
+            $thumbnailPath = $thumbnailPathExploded[0] . '-thumbnail.' . $thumbnailPathExploded[1];
+
+            $img = Image::make($image);
+            $img->fit(500, 450);
+
+            $imgThumbnail = Image::make($image);
+            $imgThumbnail->fit(350, 240);
+
+            Storage::put($imagePath, (string) $img->encode());
+            Storage::put($thumbnailPath, (string) $imgThumbnail->encode());
+
+            $dataToUpdate['image'] = $imagePath;
+            $dataToUpdate['thumbnail_image'] = $thumbnailPath;
+        }
+
+        $spot->update($dataToUpdate);
+
+        return redirect()->route('admin.spots.edit', $spot->id)->with('success', "Spot $spot->name gravado com sucesso.");
     }
 
     /**

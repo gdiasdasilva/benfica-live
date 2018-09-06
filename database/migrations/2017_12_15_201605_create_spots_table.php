@@ -34,6 +34,7 @@ class CreateSpotsTable extends Migration
             $table->string('website')->nullable();
 
             $table->boolean('is_approved')->default(false);
+            $table->boolean('is_featured')->default(false);
 
             $table->foreign('country_id')->references('id')->on('countries');
             $table->timestamps();

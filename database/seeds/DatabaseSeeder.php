@@ -17,7 +17,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         if (app()->environment() == 'local') {
-            $this->call(SpotsTableSeeder::class);
+            $this->call([
+                SpotsTableSeeder::class,
+                UsersTableSeeder::class,
+            ]);
         }
     }
 }

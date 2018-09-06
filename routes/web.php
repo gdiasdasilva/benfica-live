@@ -11,21 +11,47 @@
 |
 */
 
-Route::get('/admin/login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
-Route::post('/admin/login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
+Route::get('/admin/login', [
+    'as' => 'login',
+    'uses' => 'Auth\LoginController@showLoginForm'
+]);
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function ()
-{
-    Route::get('/dashboard', 'DashboardController@dashboard')->name('admin.dashboard');
-    Route::get('/spots', 'SpotsController@index')->name('admin.spots.index');
+Route::post('/admin/login', [
+    'as' => 'login',
+    'uses' => 'Auth\LoginController@login'
+]);
 
-    Route::get('/spots/{spotId}/edit', 'SpotsController@edit')->name('admin.spots.edit');
-    Route::post('/spots/{spotId}', 'SpotsController@update')->name('admin.spots.update');
+Route::post('/admin/logout', [
+    'as' => 'logout',
+    'uses' => 'Auth\LoginController@logout'
+])->middleware('auth');
 
-    Route::delete('/spots/{spotId}', 'SpotsController@destroy')->name('admin.spots.destroy');
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
+    Route::get('/dashboard', [
+        'as' => 'admin.dashboard',
+        'uses' => 'DashboardController@dashboard'
+    ]);
+
+    Route::get('/spots', [
+        'as' => 'admin.spots.index',
+        'uses' => 'SpotsController@index'
+    ]);
+
+    Route::get('/spots/{spotId}/edit', [
+        'as' => 'admin.spots.edit',
+        'uses' => 'SpotsController@edit'
+    ]);
+
+    Route::put('/spots/{spotId}', [
+        'as' => 'admin.spots.update',
+        'uses' => 'SpotsController@update'
+    ]);
+
+    Route::delete('/spots/{spotId}', [
+        'as' => 'admin.spots.destroy',
+        'uses' => 'SpotsController@destroy'
+    ]);
 });
-
-Route::get('/admin/logout', 'Auth\LoginController@logout')->middleware('auth');
 
 /* Homepage */
 

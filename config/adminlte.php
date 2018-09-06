@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'red',
+    'skin' => 'blue',
 
     /*
     |--------------------------------------------------------------------------
@@ -89,7 +89,7 @@ return [
 
     'logout_url' => 'admin/logout',
 
-    'logout_method' => 'GET',
+    'logout_method' => 'POST',
 
     'login_url' => 'admin/login',
 

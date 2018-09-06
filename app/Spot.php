@@ -19,7 +19,8 @@ class Spot extends Model
         'website',
         'latitude',
         'longitude',
-        'is_approved'
+        'is_approved',
+        'is_featured',
     ];
 
     public function getRouteKeyName()
