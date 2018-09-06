@@ -21,7 +21,8 @@ class DashboardController extends Controller
         $totalCountries = Country::whereHas('spots')->count();
         $totalSpots = $spots->count();
         $totalSpotsPendingApproval = $spots->where('is_approved', false)->count();
+        $featuredSpots = $spots->where('is_featured', true)->sortByDesc('created_at')->take(8);
 
-        return view('admin.dashboard', compact('totalSpots', 'totalCountries', 'totalSpotsPendingApproval'));
+        return view('admin.dashboard', compact('totalSpots', 'totalCountries', 'totalSpotsPendingApproval', 'featuredSpots'));
     }
 }
