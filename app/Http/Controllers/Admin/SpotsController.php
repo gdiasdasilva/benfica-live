@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Spot;
+use App\User;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -12,18 +14,52 @@ use Intervention\Image\Facades\Image;
 class SpotsController extends Controller
 {
     /**
-     * List of all Spots ordered by updated_at date
+     * List of all Spots
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        $spots = Spot::with('country')
-            ->orderBy('is_approved', 'ASC')
-            ->orderBy('latitude', 'ASC')
-            ->orderBy('updated_at', 'DESC')
-            ->paginate(10);
+        return view('admin.spots.index');
+    }
 
-        return view('admin.spots.index', compact('spots'));
+    public function indexData()
+    {
+        $spots = Spot::with('country')
+            ->selectRaw('spots.id,
+                spots.name as spot_name, 
+                spots.is_approved, 
+                spots.is_featured, 
+                spots.city,
+                spots.created_at, 
+                country_id'
+            );
+
+        $table = Datatables::of($spots);
+
+        $table->editColumn('is_approved', function (Spot $spot) {
+            return ($spot->is_approved ? '<i class="fa fa-check"></i>' : '<i class="fa fa-close"></i>');
+        });
+
+        $table->editColumn('is_featured', function (Spot $spot) {
+           return ($spot->is_featured ? '<i class="fa fa-star"></i>' : '');
+        });
+
+        $table->addColumn('actions', function (Spot $spot) {
+            return
+                '<a href="' . route('admin.spots.edit', $spot->id) . '">
+                    <button class="btn btn-block btn-default btn-xs">
+                        <i class="fa fa-edit"></i> Editar
+                    </button>
+                </a>';
+        });
+
+        $table->rawColumns([
+            'is_approved',
+            'is_featured',
+            'actions',
+        ]);
+
+        return $table->make(true);
     }
 
     /**

@@ -37,6 +37,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
         'uses' => 'SpotsController@index'
     ]);
 
+    Route::get('/spots/data', [
+       'as' => 'admin.spots.datatables.data',
+       'uses' => 'SpotsController@indexData'
+    ]);
+
     Route::get('/spots/{spotId}/edit', [
         'as' => 'admin.spots.edit',
         'uses' => 'SpotsController@edit'
