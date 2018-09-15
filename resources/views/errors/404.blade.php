@@ -27,7 +27,7 @@
 </head>
 <body>
     <div id="app">
-        @include('partials.navbar')
+        @include('partials.header')
         <div class="container">
             <div class="row">
                 <div class="col-md-8 mx-auto image-container">

@@ -1,10 +1,16 @@
+@import '../../../node_modules/font-awesome/scss/font-awesome';
 
-// Bootstrap
-@import "~bootstrap/scss/bootstrap";
+$success: #11883c;
+$danger: #c62828;
+
+@import '../../../node_modules/bulma/bulma';
 
 @import "variables";
-@import "general";
 @import "navbar";
+
+/*
+@import "general";
 @import "spotslist";
 @import "spot";
 @import "country";
+*/
