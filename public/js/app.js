@@ -4352,7 +4352,7 @@ var app = new Vue({
     }
 });
 
-__WEBPACK_IMPORTED_MODULE_0_twemoji__["default"].parse(document.body);
+//twemoji.parse(document.body);
 
 /***/ }),
 /* 91 */

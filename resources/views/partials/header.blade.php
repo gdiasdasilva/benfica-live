@@ -11,7 +11,7 @@
 
         <div class="navbar-menu" v-bind:class="{'is-active' : mobileMenuOpen}">
             <div class="navbar-start">
-                <a class="navbar-item" href="{{ route('countries.index') }}">Lista de Spots</a>
+                <a class="navbar-item" href="{{ route('countries.index') }}">Países</a>
                 <a class="navbar-item" href="{{ route('page.about') }}">Sobre nós</a>
                 <a class="navbar-item" href="{{ route('contacts.show') }}">Contactos</a>
             </div>

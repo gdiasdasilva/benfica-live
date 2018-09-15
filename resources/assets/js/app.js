@@ -39,4 +39,4 @@ const app = new Vue({
     }
 });
 
-twemoji.parse(document.body);
+//twemoji.parse(document.body);
