@@ -1,17 +1,29 @@
-<div class="container">
-    @if (session('success'))
-        <div class="alert alert-success" role="alert">
-          {!! session('success') !!}
+<section class="status-messages">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-10 is-offset-1">
+                @if (session('success'))
+                    <article class="message is-success">
+                        <div class="message-body content">
+                            {!! session('success') !!}
+                        </div>
+                    </article>
+                @endif
+                @if ($errors->any())
+                    <article class="message is-danger">
+                        <div class="message-header">
+                            <p>Erros na submissão</p>
+                        </div>
+                        <div class="message-body">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </article>
+                @endif
+            </div>
         </div>
-    @endif
-    @if ($errors->any())
-        <div class="alert alert-danger" role="alert">
-            <h5>Erros na submissão:</h5>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif    
-</div>
+    </div>
+</section>
