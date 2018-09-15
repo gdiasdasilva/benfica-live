@@ -5,10 +5,12 @@ $danger: #c62828;
 
 @import '../../../node_modules/bulma/bulma';
 
+@import "general";
 @import "status-messages";
+@import "homepage";
 
 /*
-@import "general";
+
 @import "spotslist";
 @import "spot";
 @import "country";

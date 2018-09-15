@@ -17,8 +17,11 @@
             </div>
             <div class="navbar-end">
                 <div class="navbar-item">
-                    <a class="navbar-item button is-white" href="{{ route('spots.create') }}">
-                        Submeter
+                    <a class="navbar-item button is-danger is-inverted is-outlined" href="{{ route('spots.create') }}">
+                        <span class="icon">
+                            <i class="fa fa-upload"></i>
+                        </span>
+                        <span>Sugerir um novo Spot</span>
                     </a>
                 </div>
             </div>

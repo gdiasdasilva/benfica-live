@@ -1,81 +1,12 @@
-h2 {
-    margin-bottom: 20px;
+main {
+    margin-top: 15px;
 }
 
-.btn.btn-danger-inverted {
-    color: $materialize-red;
-    background-color: #fff;
-    border-color: $materialize-red;
-
-    &:hover {
-        background-color: $materialize-red;
-        color: #fff;
-    }
-}
-
-.btn.btn-danger {
-    background-color: $materialize-red;
-}
-
-.btn.btn-danger-white-border {
-    background-color: $materialize-red;
-    border: 1px solid white;
-}
-
-body {
-    padding-bottom: 50px;
-
-    img {
-        &.emoji {
-            height: 1em;
-            width: 1em;
-            margin: 0 .05em 0 .1em;
-            vertical-align: -0.1em;
-        }
-    }
-}
-
-.welcome-page {
-    h2 {
-        margin-top: 30px;
-    }
-
-    .benfica-header-logo {
-        text-align: center;
-
-        img {
-            width: 150px;
-            margin-bottom: 20px;
-        }
-    }
-
-    a.submit-spot-button {
-        button {
-            cursor: pointer;
-        }
-    }
-
-    .last-submissions {
-        margin-bottom: 30px;
-
-        .last-submission-entry {
-            .card-body {
-                a {
-                    display: block;
-                    width: fit-content;
-                    margin: 0 auto;
-                }
-            }
-        }
-    }
-
-    @media(max-width: 765px) {
-        .last-submissions .last-submission-entry:not(:last-child) {
-            margin-bottom: 30px !important;
-        }
-    }
-
-    .submit-spot-container {
-        text-align: center;
+img {
+    &.emoji {
+        height: 1em;
+        width: 1em;
+        margin: 0 .05em 0 .1em;
+        vertical-align: -0.1em;
     }
 }

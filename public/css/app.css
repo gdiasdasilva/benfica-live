@@ -14570,13 +14570,33 @@ label.panel-block:hover {
   padding: 3rem 1.5rem 6rem;
 }
 
+main {
+  margin-top: 15px;
+}
+
+img.emoji {
+  height: 1em;
+  width: 1em;
+  margin: 0 .05em 0 .1em;
+  vertical-align: -0.1em;
+}
+
 .status-messages {
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
+.main-benfica-logo {
+  text-align: center;
+}
+
+.main-benfica-logo img {
+  width: 150px;
+  margin-bottom: 10px;
+}
+
 /*
-@import "general";
+
 @import "spotslist";
 @import "spot";
 @import "country";
