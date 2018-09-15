@@ -6,7 +6,9 @@ use App\Spot;
 use App\Country;
 use Tests\TestCase;
 use App\Mail\SpotSubmitted;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -17,7 +19,10 @@ class SubmissionsTest extends TestCase
     public function setUp()
     {
         parent::setUp();
+
         Mail::fake();
+        Storage::fake('local');
+
         factory(Country::class, 10)->create();
     }
 
@@ -27,6 +32,38 @@ class SubmissionsTest extends TestCase
         $country = Country::first();
         $this->submitSpot(['country' => $country->id])->assertSessionHasNoErrors();
         $this->checkEmailSent(1);
+    }
+
+    /** @test */
+    public function a_spot_may_have_an_image_below_2mb_uploaded()
+    {
+        $country = Country::first();
+
+        $testFile = UploadedFile::fake()->image('test-file.jpg')->size(300);
+
+        $this->submitSpot([
+            'country' => $country->id,
+            'image' => $testFile,
+        ])->assertSessionHasNoErrors();
+
+        Storage::disk('local')->assertExists('spots/' . $testFile->hashName());
+
+        $this->checkEmailSent(1);
+    }
+
+    /** @test */
+    public function a_spot_image_must_have_less_than_2mb()
+    {
+        $country = Country::first();
+
+        $testFile = UploadedFile::fake()->image('test-file.jpg')->size(3000);
+
+        $this->submitSpot([
+            'country' => $country->id,
+            'image' => $testFile,
+        ])->assertSessionHasErrors('image');
+
+        Storage::disk('local')->assertMissing('spots/' . $testFile->hashName());
     }
 
     /** @test */
@@ -92,7 +129,11 @@ class SubmissionsTest extends TestCase
         $spot = make(Spot::class, $overrides);
         $spotArray = $spot->toArray();
 
-        $spotArray['image'] = null;
+        if (array_key_exists('image', $overrides)) {
+            $spotArray['image'] = $overrides['image'];
+        } else {
+            $spotArray['image'] = null;
+        }
 
         if (array_key_exists('country', $overrides)) {
             $spotArray['country'] = $overrides['country'];
