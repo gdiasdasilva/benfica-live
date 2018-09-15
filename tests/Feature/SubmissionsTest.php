@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use App\Spot;
 use App\Country;
 use Tests\TestCase;
+use App\Mail\SpotSubmitted;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -15,7 +17,7 @@ class SubmissionsTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        //$this->withoutExceptionHandling();
+        Mail::fake();
         factory(Country::class, 10)->create();
     }
 
@@ -24,6 +26,7 @@ class SubmissionsTest extends TestCase
     {
         $country = Country::first();
         $this->submitSpot(['country' => $country->id])->assertSessionHasNoErrors();
+        $this->checkEmailSent(1);
     }
 
     /** @test */
@@ -75,8 +78,15 @@ class SubmissionsTest extends TestCase
         $lastSpots = Spot::orderBy('created_at', 'desc')->take(2)->get();
 
         $this->assertNotEquals($lastSpots->pop()->slug, $lastSpots->pop()->slug);
+        $this->checkEmailSent(2);
     }
 
+    /**
+     * Function to submit a new spot to the correct endpoint
+     *
+     * @param array $overrides
+     * @return \Illuminate\Foundation\Testing\TestResponse
+     */
     private function submitSpot(array $overrides = [])
     {
         $spot = make(Spot::class, $overrides);
@@ -90,4 +100,15 @@ class SubmissionsTest extends TestCase
 
         return $this->call('POST', route('spots.store'), $spotArray);
     }
+
+    /**
+     * Test that an e-mail for SpotSubmitted was sent $times times.
+     *
+     * @param int $times
+     */
+    private function checkEmailSent(int $times)
+    {
+        Mail::assertSent(SpotSubmitted::class, $times);
+    }
+
 }

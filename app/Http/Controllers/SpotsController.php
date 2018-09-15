@@ -97,7 +97,7 @@ class SpotsController extends Controller
 
         $recipientAddress = config('mail.to')['address'];
 
-        if ($recipientAddress && app()->environment() !== 'testing' && (config('mail.status') || app()->environment(['production']))) {
+        if ($recipientAddress && (config('mail.status') || app()->environment(['production']))) {
             // Send e-mail to admin alerting about new spot submission
             Mail::to($recipientAddress)->send(new SpotSubmitted($spot));
         }
