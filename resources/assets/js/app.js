@@ -1,16 +1,9 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.emojiSupport = require('detect-emoji-support');
 
 import twemoji from 'twemoji'
-window.twemoji = require('twemoji');
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
 import * as VueGoogleMaps from 'vue2-google-maps';
 
 Vue.use(VueGoogleMaps, {
@@ -37,4 +30,7 @@ const app = new Vue({
     }
 });
 
-//twemoji.parse(document.body);
+/* If browser doesn't support emojis, replace them with images */
+if (!emojiSupport()) {
+    twemoji.parse(document.body);
+}

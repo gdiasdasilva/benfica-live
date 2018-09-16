@@ -13,13 +13,16 @@
         "axios": "^0.18",
         "browser-sync": "^2.18.12",
         "browser-sync-webpack-plugin": "^1.2.0",
-        "cross-env": "^5.1",
         "bulma": "^0.7.1",
+        "cross-env": "^5.1",
+        "font-awesome": "^4.7.0",
         "laravel-mix": "^2.0",
         "twemoji": "^11.0.1",
-        "font-awesome": "^4.7.0",
         "vue": "^2.5.7",
         "vue-template-compiler": "^2.5.7",
         "vue2-google-maps": "^0.8.12"
+    },
+    "dependencies": {
+        "detect-emoji-support": "^0.1.6"
     }
 }
