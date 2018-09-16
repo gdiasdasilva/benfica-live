@@ -10,3 +10,18 @@ img {
         vertical-align: -0.1em;
     }
 }
+
+@media screen and (max-width: 1087px) {
+    .navbar-menu {
+        .navbar-end {
+            .navbar-item {
+                a {
+                    padding-bottom: 32px;
+                    &.button {
+                        background-color: $danger;
+                    }
+                }
+            }
+        }
+    }
+}

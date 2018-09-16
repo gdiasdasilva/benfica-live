@@ -1,63 +1,82 @@
 @extends('layouts.app')
-
-@section('pageTitle', $spot->name)
+@section('pageTitle', $spot->name . ' - ' . $spot->country->name_pt)
 
 @section('content')
 
-<div class="row spot-detail">
-    <div class="col-md-6">
-        <h2 class="display-4">{{ $spot->name }}</h2>
-        <p class="lead">{{ $spot->city }}, {{ $spot->country->name_pt }}</p>
-
-        @if ($spot->address)
-            <h3>Morada</h3>
-            <p>{!! nl2br(e($spot->address)) !!}</p>
-        @endif
-
-        @if ($spot->email || $spot->phone_number || $spot->website)
-            <h3>Contactos</h3>
-            @if ($spot->email)
-                <p><label>E-mail:</label> {{ $spot->email }}</p>
-            @endif
-
-            @if ($spot->website)
-                <p><label>Website:</label> <a href="{{ $spot->website }}" target="_blank" rel="noopener">{{ $spot->website }}</a></p>
-            @endif
-
-            @if ($spot->phone_number)
-                <p><label>Telefone:</label> {{ $spot->phone_number }}</p>
-            @endif
-        @endif
-
-        <a class="btn btn-danger" href="{{ route('countries.show', $spot->country->slug_pt) }}">Ver mais em {{ $spot->country->name_pt }}</a>
-    </div>
-    <div class="col-md-6 image-map-container">
-        @if ((!is_null($spot->latitude) && !is_null($spot->longitude)) || $spot->image)
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link @if(!is_null($spot->latitude) && !is_null($spot->longitude)) active @else disabled @endif" data-toggle="tab" href="#map">Mapa</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link @if(!$spot->image) disabled @endif @if(!(!is_null($spot->latitude) && !is_null($spot->longitude)) && $spot->image) active @endif" data-toggle="tab" href="#image">Fotografias</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                @if(!is_null($spot->latitude) && !is_null($spot->longitude))
-                    <div id="map" class="container tab-pane active"><br>
-                        <google-map lat="{{ $spot->latitude }}" lng="{{ $spot->longitude }}"></google-map>
+<section class="section spot-detail">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-6">
+                <h1 class="title">{{ $spot->name }}</h1>
+                <h2 class="subtitle">
+                    {{ $spot->city }}, {{ $spot->country->name_pt }} {{ $spot->country->emoji }}
+                </h2>
+                <div class="spot-details content">
+                    <div class="address">
+                        <span class="icon">
+                            <i class="fa fa-map-pin"></i>
+                        </span>
+                        <span>{{ $spot->address }}</span>
                     </div>
-                @endif
-                @if($spot->image)
-                    <div id="image" class="container tab-pane @if(!is_null($spot->latitude) && !is_null($spot->longitude)) fade @else active @endif"><br>
-                        <div class="placeholder-image" style="background-image: url({{ $spot->image }});"></div>
-                    </div>
-                @endif
+                    @if ($spot->phone_number)
+                        <div class="phone-number">
+                            <span class="icon">
+                                <i class="fa fa-phone"></i>
+                            </span>
+                            <span>{{ $spot->phone_number }}</span>
+                        </div>
+                    @endif
+                    @if ($spot->email)
+                        <div class="email">
+                            <span class="icon">
+                                <i class="fa fa-envelope"></i>
+                            </span>
+                            <span><a href="mailto:{{ $spot->email }}">{{ $spot->email }}</a></span>
+                        </div>
+                    @endif
+                    @if ($spot->website)
+                        <div class="website">
+                            <span class="icon">
+                                <i class="fa fa-link"></i>
+                            </span>
+                            <span>
+                                <a href="{{ $spot->website }}" target="_blank" rel="noopener">
+                                    Visitar website
+                                </a>
+                            </span>
+                        </div>
+                    @endif
+
+                    <button class="button is-success open-image-modal" v-on:click="toggleSpotModal">
+                        <span class="icon">
+                            <i class="fa fa-photo"></i>
+                        </span>
+                        <span>Ver imagens</span>
+                    </button>
+                </div>
             </div>
-        @else
-            <div class="render-placeholder-render">
-                <img src="/images/renders/equipa.png" alt="Render da equipa">
+            <div class="column is-6">
+                <google-map lat="{{ $spot->latitude }}" lng="{{ $spot->longitude }}"></google-map>
             </div>
-        @endif
+        </div>
+        <div class="columns">
+            <div class="column is-4 is-offset-4">
+                <a class="button is-danger is-fullwidth" href="{{ route('countries.show', $spot->country->slug_pt) }}">
+                    <span class="icon"><i class="fa fa-globe"></i></span>
+                    <span>Ver mais em {{ $spot->country->name_pt }}</span>
+                </a>
+            </div>
+        </div>
+        <div class="modal" v-bind:class="{'is-active' : spotDetailModalOpen}">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <p class="image is-4by3">
+                    <img src="{{ $spot->image }}" alt="{{ $spot->name }}" title="{{ $spot->name }}">
+                </p>
+            </div>
+            <button class="modal-close is-large" aria-label="close" v-on:click="toggleSpotModal"></button>
+        </div>
     </div>
-</div>
+</section>
+
 @endsection

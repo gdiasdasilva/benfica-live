@@ -4337,17 +4337,15 @@ Vue.component('google-map', __webpack_require__(251));
 var app = new Vue({
     el: '#app',
     data: {
-        mobileMenuOpen: false
+        mobileMenuOpen: false,
+        spotDetailModalOpen: false
     },
     methods: {
         toggleMobileMenu: function toggleMobileMenu() {
             this.mobileMenuOpen = !this.mobileMenuOpen;
         },
-        closeMobileMenu: function closeMobileMenu() {
-            if (this.mobileMenuOpen) {
-                window.scrollTo(0, 0);
-                this.mobileMenuOpen = false;
-            }
+        toggleSpotModal: function toggleSpotModal() {
+            this.spotDetailModalOpen = !this.spotDetailModalOpen;
         }
     }
 });

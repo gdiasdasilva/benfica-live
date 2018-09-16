@@ -25,17 +25,15 @@ const app = new Vue({
     el: '#app',
     data: {
         mobileMenuOpen: false,
+        spotDetailModalOpen: false,
     },
     methods: {
-        toggleMobileMenu: function(){
+        toggleMobileMenu: function() {
             this.mobileMenuOpen = !this.mobileMenuOpen;
         },
-        closeMobileMenu: function(){
-            if(this.mobileMenuOpen){
-                window.scrollTo(0,0);
-                this.mobileMenuOpen = false;
-            }
-        },
+        toggleSpotModal: function () {
+            this.spotDetailModalOpen = !this.spotDetailModalOpen;
+        }
     }
 });
 

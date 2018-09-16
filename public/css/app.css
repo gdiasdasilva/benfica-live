@@ -14581,6 +14581,16 @@ img.emoji {
   vertical-align: -0.1em;
 }
 
+@media screen and (max-width: 1087px) {
+  .navbar-menu .navbar-end .navbar-item a {
+    padding-bottom: 32px;
+  }
+
+  .navbar-menu .navbar-end .navbar-item a.button {
+    background-color: #c62828;
+  }
+}
+
 .status-messages {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -14619,6 +14629,10 @@ img.emoji {
 
 .spot-submission-form form .file {
   margin-top: 30px;
+}
+
+.open-image-modal {
+  margin-top: 20px;
 }
 
 /*
