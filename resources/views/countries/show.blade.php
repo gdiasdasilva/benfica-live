@@ -24,7 +24,7 @@
         <div class="columns">
             <div class="column is-2 is-offset-5">
                 <a class="button is-danger is-fullwidth" href="{{ route('countries.index') }}">
-                    <span class="icon"><i class="fa fa-map"></i></span>
+                    <span class="icon"><i class="fa fa-globe"></i></span>
                     <span>Ver outros países</span>
                 </a>
             </div>

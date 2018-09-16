@@ -14617,6 +14617,10 @@ img.emoji {
   right: 10px;
 }
 
+.spot-submission-form form .file {
+  margin-top: 30px;
+}
+
 /*
 
 @import "spotslist";
