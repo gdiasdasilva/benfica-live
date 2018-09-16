@@ -11,8 +11,15 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.copyDirectory('node_modules/font-awesome/fonts', 'public/fonts');
+
+mix.js('resources/assets/js/app.js', 'public/js').extract(['vue']);
+
+mix.standaloneSass('resources/assets/sass/app.scss', 'public/css');
+
+if (mix.inProduction) {
+    mix.version();
+}
 
 mix.browserSync({
     proxy: 'benfica-live.test'
