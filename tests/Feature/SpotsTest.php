@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class SubmissionsTest extends TestCase
+class SpotsTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -24,6 +24,40 @@ class SubmissionsTest extends TestCase
         Storage::fake('local');
 
         factory(Country::class, 10)->create();
+    }
+
+    /** @test */
+    public function an_approved_spot_can_be_visited_with_its_slug_in_path()
+    {
+        $spot = create(Spot::class, [
+            'is_approved' => true
+        ]);
+
+        $response = $this->get(route('spots.show', [
+            'countrySlug' => $spot->country->slug_pt,
+            'spotSlug' => $spot->slug,
+        ]));
+
+        $response->assertOk()
+            ->assertSee($spot->name)
+            ->assertSee($spot->country->name_pt);
+    }
+
+    /** @test */
+    public function a_not_approved_spot_cannot_be_visited()
+    {
+        $spot = create(Spot::class, [
+            'is_approved' => false
+        ]);
+
+        $response = $this->get(route('spots.show', [
+            'countrySlug' => $spot->country->slug_pt,
+            'spotSlug' => $spot->slug,
+        ]));
+
+        $response->assertStatus(404)
+            ->assertDontSee($spot->name)
+            ->assertDontSee($spot->country->name_pt);
     }
 
     /** @test */
