@@ -5,7 +5,7 @@
 <section class="section introductory-text">
     <div class="container">
         <div class="columns">
-            <div class="column is-10 is-offset-1 content">
+            <div class="column is-10 is-offset-1 content is-medium">
                 <div class="main-benfica-logo">
                     <img src="{{ asset('images/slb-logo-new.svg') }}" alt="Sport Lisboa e Benfica logo">
                 </div>
@@ -54,7 +54,7 @@
     </div>
 </section>
 
-<section class=" submit-new-spot">
+<section class="submit-new-spot">
     <div class="container">
         <div class="columns">
             <div class="column is-4 is-offset-4">

@@ -14595,6 +14595,19 @@ img.emoji {
   margin-bottom: 10px;
 }
 
+.countries-list .panel .panel-block {
+  position: relative;
+}
+
+.countries-list .panel .panel-block .country-flag {
+  margin-right: 5px;
+}
+
+.countries-list .panel .panel-block .tag {
+  position: absolute;
+  right: 10px;
+}
+
 /*
 
 @import "spotslist";

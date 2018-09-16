@@ -1,0 +1,14 @@
+.countries-list {
+    .panel {
+        .panel-block {
+            position: relative;
+            .country-flag {
+                margin-right: 5px;
+            }
+            .tag {
+                position: absolute;
+                right: 10px;
+            }
+        }
+    }
+}
