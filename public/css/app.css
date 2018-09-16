@@ -14608,6 +14608,15 @@ img.emoji {
   right: 10px;
 }
 
+.country-detail .panel .panel-block {
+  position: relative;
+}
+
+.country-detail .panel .panel-block .tag {
+  position: absolute;
+  right: 10px;
+}
+
 /*
 
 @import "spotslist";
