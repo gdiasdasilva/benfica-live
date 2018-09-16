@@ -6,7 +6,7 @@
     <div class="container">
         <div class="columns">
             <div class="column is-8 is-offset-2">
-                <h1 class="title">Novo Spot</h1>
+                <h1 class="title is-1">Novo Spot</h1>
                 <h2 class="subtitle">Sugere um Spot para ser adicionado à plataforma</h2>
 
                 <form action="{{ route('spots.store') }}" method="POST" enctype="multipart/form-data">

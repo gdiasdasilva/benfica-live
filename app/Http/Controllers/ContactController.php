@@ -33,7 +33,6 @@ class ContactController extends Controller
             'name' => 'required|string|max:60',
             'email' => 'required|email',
             'message' => 'required|string|max:2000',
-            'g-recaptcha-response' => 'required|captcha'
         ]);
 
         $name = $request->get('name');

@@ -6,7 +6,7 @@
     <div class="container">
         <div class="columns">
             <div class="column is-6 is-offset-3">
-                <h1 class="title">{{ $country->name_pt }} {{ $country->emoji }}</h1>
+                <h1 class="title is-1">{{ $country->name_pt }} {{ $country->emoji }}</h1>
                 <h2 class="subtitle">Listagem de spots</h2>
                 <div class="panel">
                     @foreach ($country->spots as $spot)

@@ -7,7 +7,7 @@
     <div class="container">
         <div class="columns">
             <div class="column is-6">
-                <h1 class="title">{{ $spot->name }}</h1>
+                <h1 class="title is-1">{{ $spot->name }}</h1>
                 <h2 class="subtitle">
                     {{ $spot->city }}, {{ $spot->country->name_pt }} {{ $spot->country->emoji }}
                 </h2>

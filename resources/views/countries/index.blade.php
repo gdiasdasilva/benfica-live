@@ -6,7 +6,7 @@
     <div class="container">
         <div class="columns">
             <div class="column is-5 is-offset-3">
-                <h1 class="title">Países</h1>
+                <h1 class="title is-1">Países</h1>
                 <h2 class="subtitle">Listagem de países com spots já adicionados</h2>
                 <div class="panel">
                     @foreach ($countries as $country)
