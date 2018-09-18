@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             CountriesSlugTableSeeder::class
         ]);
 
-        if (app()->environment() == 'local') {
+        if (app()->environment() === 'local') {
             $this->call([
                 SpotsTableSeeder::class,
                 UsersTableSeeder::class,

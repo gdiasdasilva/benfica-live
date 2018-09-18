@@ -47,12 +47,14 @@
                         </div>
                     @endif
 
-                    <button class="button is-success open-image-modal" v-on:click="toggleSpotModal">
-                        <span class="icon">
-                            <i class="fa fa-photo"></i>
-                        </span>
-                        <span>Ver imagens</span>
-                    </button>
+                    @if ($spot->image)
+                        <button class="button is-success open-image-modal" v-on:click="toggleSpotModal">
+                            <span class="icon">
+                                <i class="fa fa-photo"></i>
+                            </span>
+                            <span>Ver imagens</span>
+                        </button>
+                    @endif
                 </div>
             </div>
             <div class="column is-6">
@@ -67,15 +69,19 @@
                 </a>
             </div>
         </div>
-        <div class="modal" v-bind:class="{'is-active' : spotDetailModalOpen}">
-            <div class="modal-background"></div>
-            <div class="modal-content">
-                <p class="image is-4by3">
-                    <img src="{{ $spot->image }}" alt="{{ $spot->name }}" title="{{ $spot->name }}">
-                </p>
+
+        @if ($spot->image)
+            <div class="modal" v-bind:class="{'is-active' : spotDetailModalOpen}">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <p class="image is-3by2">
+                        <img src="{{ $spot->image }}" alt="{{ $spot->name }}" title="{{ $spot->name }}">
+                    </p>
+                </div>
+                <button class="modal-close is-large" aria-label="close" v-on:click="toggleSpotModal"></button>
             </div>
-            <button class="modal-close is-large" aria-label="close" v-on:click="toggleSpotModal"></button>
-        </div>
+        @endif
+
     </div>
 </section>
 

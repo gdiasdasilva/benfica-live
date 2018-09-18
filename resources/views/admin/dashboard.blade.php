@@ -47,7 +47,7 @@
                     <ul class="users-list clearfix">
                         @foreach ($featuredSpots as $spot)
                         <li>
-                            <div class="spots-image" style="background-image: url('{{ $spot->thumbnail_image }}')"></div>
+                            <div class="spots-image" style="background-image: url('{{ $spot->image }}')"></div>
                             <a class="users-list-name" href="{{ route('admin.spots.edit', $spot->id) }}">
                                 {{ $spot->name }}
                             </a>

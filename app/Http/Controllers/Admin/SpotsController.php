@@ -137,21 +137,12 @@ class SpotsController extends Controller
         if ($image) {
             $imagePath = $image->hashName('spots');
 
-            $thumbnailPath = $image->hashName('spots');
-            $thumbnailPathExploded = explode('.',$thumbnailPath);
-            $thumbnailPath = $thumbnailPathExploded[0] . '-thumbnail.' . $thumbnailPathExploded[1];
-
             $img = Image::make($image);
-            $img->fit(500, 450);
-
-            $imgThumbnail = Image::make($image);
-            $imgThumbnail->fit(350, 240);
+            $img->fit(675, 450);
 
             Storage::put($imagePath, (string) $img->encode());
-            Storage::put($thumbnailPath, (string) $imgThumbnail->encode());
 
             $dataToUpdate['image'] = $imagePath;
-            $dataToUpdate['thumbnail_image'] = $thumbnailPath;
         }
 
         $spot->update($dataToUpdate);

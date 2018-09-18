@@ -39,8 +39,8 @@ class SpotsTest extends TestCase
         ]));
 
         $response->assertOk()
-            ->assertSee($spot->name)
-            ->assertSee($spot->country->name_pt);
+            ->assertSee(e($spot->name))
+            ->assertSee(e($spot->country->name_pt));
     }
 
     /** @test */
@@ -56,8 +56,45 @@ class SpotsTest extends TestCase
         ]));
 
         $response->assertStatus(404)
-            ->assertDontSee($spot->name)
-            ->assertDontSee($spot->country->name_pt);
+            ->assertDontSee(e($spot->name))
+            ->assertDontSee(e($spot->country->name_pt));
+    }
+
+    /** @test */
+    public function a_spot_with_images_has_a_way_to_see_them()
+    {
+        $spot = create(Spot::class, [
+            'is_approved' => true
+        ]);
+
+        $response = $this->get(route('spots.show', [
+            'countrySlug' => $spot->country->slug_pt,
+            'spotSlug' => $spot->slug,
+        ]));
+
+        $response->assertOk()
+            ->assertSee(e($spot->name))
+            ->assertSee('Ver imagens')
+            ->assertSee(e($spot->country->name_pt));
+    }
+
+    /** @test */
+    public function a_spot_without_images_has_no_way_to_see_them()
+    {
+        $spot = create(Spot::class, [
+            'is_approved' => true,
+            'image' => null
+        ]);
+
+        $response = $this->get(route('spots.show', [
+            'countrySlug' => $spot->country->slug_pt,
+            'spotSlug' => $spot->slug,
+        ]));
+
+        $response->assertOk()
+            ->assertSee(e($spot->name))
+            ->assertSee(e($spot->country->name_pt))
+            ->assertDontSee('Ver imagens');
     }
 
     /** @test */

@@ -36,9 +36,11 @@ class CountriesController extends Controller
     {
         $country = Country::where('slug_pt', $countrySlug)
             ->with(['spots' => function ($query) {
-                $query->where('is_approved', true);
                 $query->orderBy('city', 'ASC');
             }])
+            ->whereHas('spots', function ($query) {
+                $query->where('is_approved', true);
+            })
             ->firstOrFail();
 
         return view('countries.show', compact('country'));

@@ -26,9 +26,9 @@
                     <a href="{{ route('spots.show', ['countrySlug' => $spot->country->slug_pt, 'spotSlug' => $spot->slug]) }}">
                         <div class="card">
                             <div class="card-image">
-                                <figure class="image is-4by3">
-                                    @if ($spot->thumbnail_image)
-                                        <img class="card-img-top" src="{{ $spot->thumbnail_image }}" alt="Imagem do spot">
+                                <figure class="image is-3by2">
+                                    @if ($spot->image)
+                                        <img class="card-img-top" src="{{ $spot->image }}" alt="Imagem do spot">
                                     @endif
                                 </figure>
                             </div>

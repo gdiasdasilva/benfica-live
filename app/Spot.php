@@ -15,7 +15,6 @@ class Spot extends Model
         'city',
         'country_id',
         'image',
-        'thumbnail_image',
         'website',
         'latitude',
         'longitude',
@@ -36,11 +35,6 @@ class Spot extends Model
     public function getImageAttribute($imagePath)
     {
         return ($imagePath ? asset("storage/$imagePath") : null);
-    }
-
-    public function getThumbnailImageAttribute($thumbnailImagePath)
-    {
-        return ($thumbnailImagePath ? asset("storage/$thumbnailImagePath") : null);
     }
 
     /**

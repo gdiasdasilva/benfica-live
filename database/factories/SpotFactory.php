@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Spot::class, function (Faker $faker) {
     if (app()->environment() !== 'testing') {
-        $fakeImage = $faker->image('public/storage/spots', 400, 400, 'sports', false);
+        $fakeImage = $faker->image('public/storage/spots', 675, 450, 'sports', false);
     } else {
         $fakeImage = '';
     }
@@ -15,7 +15,6 @@ $factory->define(App\Spot::class, function (Faker $faker) {
         'address' => $faker->address,
         'city' => $faker->city,
         'image' => "spots/$fakeImage",
-        'thumbnail_image' => "spots/$fakeImage",
         'latitude' => (string) $faker->latitude,
         'longitude' => (string) $faker->longitude,
         'email' => $faker->email,

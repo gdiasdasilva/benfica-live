@@ -24,7 +24,6 @@ class CreateSpotsTable extends Migration
             $table->string('city');
 
             $table->string('image')->nullable();
-            $table->string('thumbnail_image')->nullable();
 
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();

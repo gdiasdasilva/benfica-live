@@ -52,23 +52,14 @@ class SpotsController extends Controller
 
         $image = $request->file('image');
         $imagePath = null;
-        $thumbnailPath = null;
 
         if ($image) {
             $imagePath = $image->hashName('spots');
 
-            $thumbnailPath = $image->hashName('spots');
-            $thumbnailPathExploded = explode('.',$thumbnailPath);
-            $thumbnailPath = $thumbnailPathExploded[0] . '-thumbnail.' . $thumbnailPathExploded[1];
-
             $img = Image::make($image);
-            $img->fit(500, 450);
-
-            $imgThumbnail = Image::make($image);
-            $imgThumbnail->fit(350, 240);
+            $img->fit(675, 450);
 
             Storage::put($imagePath, (string) $img->encode());
-            Storage::put($thumbnailPath, (string) $imgThumbnail->encode());
         }
 
         $name = $request->get('name');
@@ -92,7 +83,6 @@ class SpotsController extends Controller
             'phone_number' => $request->get('phone-number'),
             'website' => $request->get('website'),
             'image' => $imagePath,
-            'thumbnail_image' => $thumbnailPath,
         ]);
 
         $recipientAddress = config('mail.to')['address'];
