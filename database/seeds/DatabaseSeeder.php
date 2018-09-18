@@ -11,8 +11,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(CountriesWithPTTableSeeder::class);
-        $this->call(CountriesSlugTableSeeder::class);
-        // $this->call(SpotsTableSeeder::class);
+        $this->call([
+            CountriesWithPTTableSeeder::class,
+            CountriesSlugTableSeeder::class
+        ]);
+
+        if (app()->environment() === 'local') {
+            $this->call([
+                SpotsTableSeeder::class,
+                UsersTableSeeder::class,
+            ]);
+        }
     }
 }

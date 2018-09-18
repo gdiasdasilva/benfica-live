@@ -7,26 +7,40 @@ use App\Country;
 
 class CountriesController extends Controller
 {
+    /**
+     * Lists all countries with the total of spots available for each one
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
-        $countries = Country::whereHas('spots', function($spot){
-            $spot->where('is_approved', true);
+        $countries = Country::whereHas('spots', function ($query) {
+            $query->where('is_approved', true);
         })
-        ->withCount(['spots' => function ($spots) {
-            $spots->where('is_approved', true);
+        ->withCount(['spots' => function ($query) {
+            $query->where('is_approved', true);
         }])
-        ->orderBy('name_pt', 'ASC')->get();
+        ->orderBy('name_pt', 'ASC')
+        ->get();
 
         return view('countries.index', compact('countries'));
     }
 
-    public function show($countrySlug)
+    /**
+     * Show a list of all the spots for a specific country
+     *
+     * @param $countrySlug
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show(String $countrySlug)
     {
         $country = Country::where('slug_pt', $countrySlug)
             ->with(['spots' => function ($query) {
-                $query->where('is_approved', true);
                 $query->orderBy('city', 'ASC');
             }])
+            ->whereHas('spots', function ($query) {
+                $query->where('is_approved', true);
+            })
             ->firstOrFail();
 
         return view('countries.show', compact('country'));

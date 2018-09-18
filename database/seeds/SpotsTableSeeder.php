@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 
 class SpotsTableSeeder extends Seeder
 {
@@ -11,6 +12,12 @@ class SpotsTableSeeder extends Seeder
      */
     public function run()
     {
+        $spotsFolderPath = storage_path('app/public/spots');
+
+        if (!File::exists($spotsFolderPath)) {
+            File::makeDirectory($spotsFolderPath);
+        }
+
         factory(App\Spot::class, 40)->create();
     }
 }

@@ -3,24 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Spot;
-use DB;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Image;
-use Storage;
-
 use App\Mail\SpotSubmitted;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class SpotsController extends Controller
 {
     /**
      * Show the form for creating a new Spot.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        $countries_list = DB::table('countries')
+        $countries = DB::table('countries')
             ->select('id', 'name_pt')
             ->where('continent_id', 2)
             ->orWhere('continent_id', 3)
@@ -29,75 +28,88 @@ class SpotsController extends Controller
             ->orderBy('name_pt', 'asc')
             ->get();
 
-        return view('spots.create', compact('countries_list'));
+        return view('spots.create', compact('countries'));
     }
 
     /**
      * Store a newly created Spot in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:60',
-            'city' => 'required|max:35',
+            'name' => 'required|string|max:60',
+            'city' => 'required|string|max:35',
+            'country' => 'required|exists:countries,id',
+            'address' => 'required|string|nullable|max:255',
+            'phone-number' => 'string|nullable|max:20',
             'email' => 'email|nullable',
-            'country_id' => 'required|exists:countries,id',
-            'spot_image' => 'image|nullable|max:2000',
-            'website' => 'url|nullable'
+            'website' => 'url|nullable',
+            'image' => 'image|nullable|max:2000',
         ]);
 
-        $image = $request->file('spot_image');
+        $image = $request->file('image');
         $imagePath = null;
-        $thumbnailPath = null;
 
         if ($image) {
             $imagePath = $image->hashName('spots');
-            $thumbnailPath = $image->hashName('spots');
-            $thumbnailPathExploded = explode('.',$thumbnailPath);
-            $thumbnailPath = $thumbnailPathExploded[0] . '-thumbnail.' . $thumbnailPathExploded[1];
 
             $img = Image::make($image);
-            $img->fit(350, 240);
-
-            $imgThumbnail = Image::make($image);
-            $imgThumbnail->fit(500, 450);
+            $img->fit(675, 450);
 
             Storage::put($imagePath, (string) $img->encode());
-            Storage::put($thumbnailPath, (string) $imgThumbnail->encode());
         }
 
-        $name = $request['name'];
+        $name = $request->get('name');
+
+        $slug = str_slug($name);
+        $slugIndex = 0;
+
+        // If slug already in use, add an index to the slug
+        while (Spot::where('slug', $slug)->count()) {
+            $slugIndex++;
+            $slug = "$slug-$slugIndex";
+        }
 
         $spot = Spot::create([
             'name' => $name,
-            'slug' => str_slug($name),
-            'address' => $request->has('address') ? $request->input('address') : null,
-            'email' => $request->has('email') ? $request->input('email') : null,
-            'phone_number' => $request->has('phone_number') ? $request->input('phone_number') : null,
-            'city' => $request->has('city') ? $request->input('city') : null,
-            'country_id' => $request->has('country_id') ? $request->input('country_id') : null,
+            'slug' => $slug,
+            'country_id' => $request->get('country'),
+            'city' => $request->get('city'),
+            'address' => $request->get('address'),
+            'email' => $request->get('email'),
+            'phone_number' => $request->get('phone-number'),
+            'website' => $request->get('website'),
             'image' => $imagePath,
-            'thumbnail_image' => $thumbnailPath,
-            'website' => $request->has('website') ? $request->input('website') : null,
         ]);
 
-        Mail::to(config('mail.to')['address'])->send(new SpotSubmitted($spot));
+        $recipientAddress = config('mail.to')['address'];
 
-        return redirect('/')->with('success', "Spot $name submetido com sucesso. Será publicado após ser revisto e aprovado. Obrigado!");
+        if ($recipientAddress && (config('mail.status') || app()->environment(['production']))) {
+            // Send e-mail to admin alerting about new spot submission
+            Mail::to($recipientAddress)->send(new SpotSubmitted($spot));
+        }
+
+        return redirect()->route('home')->with('success',
+            "<p>Spot <strong>$name</strong> submetido com sucesso!</p><p>Será publicado em breve, após revisão por
+                parte da nossa equipa. Obrigado!</p>");
     }
 
     /**
      * Display the specified Spot.
      *
-     * @param  \App\Spot  $spot
-     * @return \Illuminate\Http\Response
+     * @param String $countrySlug
+     * @param String $spotSlug
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show($countrySlug, $spotSlug)
+    public function show(String $countrySlug, String $spotSlug)
     {
-        $spot = Spot::where('slug', $spotSlug)->where('is_approved', true)->firstOrFail();
-        return view('spots.show')->with(compact('spot'));
+        $spot = Spot::where('slug', $spotSlug)
+            ->where('is_approved', true)
+            ->firstOrFail();
+
+        return view('spots.show', compact('spot'));
     }
 }

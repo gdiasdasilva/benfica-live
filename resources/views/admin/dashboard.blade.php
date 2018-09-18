@@ -36,4 +36,53 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-featured">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><i class="fa fa-star"></i> Spots Destacados</h3>
+                </div>
+                <div class="box-body no-padding">
+                    <ul class="users-list clearfix">
+                        @foreach ($featuredSpots as $spot)
+                        <li>
+                            <div class="spots-image" style="background-image: url('{{ $spot->image }}')"></div>
+                            <a class="users-list-name" href="{{ route('admin.spots.edit', $spot->id) }}">
+                                {{ $spot->name }}
+                            </a>
+                            <span class="users-list-date">
+                                Criado {{ Carbon\Carbon::instance($spot->created_at)->diffForHumans() }}
+                            </span>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="box-footer text-center">
+                    <a href="{{ route('admin.spots.index') }}">
+                        <button class="text-uppercase btn btn-primary">Ver todos os Spots</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
+
+@section('css')
+    <style>
+        .spots-image {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            margin-bottom: 5px;
+            background-size: cover;
+            display: inline-block;
+        }
+        .fa-star {
+            color: goldenrod;
+        }
+        .box.box-featured {
+            border-top: 3px solid goldenrod;
+        }
+    </style>
+@endsection

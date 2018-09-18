@@ -1,5 +1,11 @@
 .country-detail {
-    a.more-countries {
-        margin-top: 20px;
+    .panel {
+        .panel-block {
+            position: relative;
+            .tag {
+                position: absolute;
+                right: 10px;
+            }
+        }
     }
 }

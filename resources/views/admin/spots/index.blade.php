@@ -2,10 +2,6 @@
 
 @section('title', 'Lista de Spots')
 
-@section('content_header')
-
-@stop
-
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -14,41 +10,57 @@
                     <h3 class="box-title">Lista de Spots</h3>
                 </div>
                 <div class="box-body">
-                    <table class="table table-bordered table-hover">
+                    <table class="table table-bordered table-hover" id="spots-table">
                         <thead>
                             <tr>
                                 <th>Nome</th>
-                                <th>País</th>
                                 <th>Cidade</th>
-                                <th>Estado</th>
+                                <th>País</th>
+                                <th>Aprovado</th>
+                                <th>Destacado</th>
+                                <th>Criado em</th>
                                 <th>Acções</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach ($spots as $spot)
-                                <tr>
-                                    <td>{{ $spot->name }}</td>
-                                    <td>{{ $spot->country->name_pt }} {{ $spot->country->emoji }}</td>
-                                    <td>{{ $spot->city }}</td>
-                                    <td class="">
-                                        <span class="badge {{ $spot->is_approved ? 'bg-green' : 'bg-red' }}">{{ $spot->is_approved ? 'Aprovado' : 'Por aprovar' }}</span>
-                                        @if (!($spot->latitude && $spot->longitude))
-                                            <span class="badge bg-yellow">Lat/Long</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-xs btn-primary" href="{{ route('admin.spots.edit', $spot->id) }}">
-                                            Gerir
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
                     </table>
-
-                    {{ $spots->links() }}
                 </div>
             </div>
         </div>
     </div>
 @stop
+
+@section('js')
+    <script>
+        $(function() {
+            $('#spots-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{!! route('admin.spots.datatables.data') !!}',
+                order: [5, "desc"],
+                columns: [
+                    { data: 'spot_name', name: 'name' },
+                    { data: 'city', name: 'city' },
+                    { data: 'country.name_pt', name: 'country.name_pt' },
+                    { data: 'is_approved', name: 'is_approved', className: 'text-center' },
+                    { data: 'is_featured', name: 'is_featured', className: 'text-center' },
+                    { data: 'created_at', name: 'created_at', visible: false },
+                    { data: 'actions', name: 'actions', sortable: false },
+                ]
+            });
+        });
+    </script>
+@endsection
+
+@section('css')
+    <style>
+        .fa-check {
+            color: green;
+        }
+        .fa-close {
+            color: red;
+        }
+        .fa-star {
+            color: goldenrod;
+        }
+    </style>
+@endsection

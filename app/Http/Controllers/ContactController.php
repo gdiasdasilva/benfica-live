@@ -2,40 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-
 use App\ContactMessage;
+use Illuminate\Http\Request;
 use App\Mail\ContactSubmitted;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
-    public function show(Request $request)
+    /**
+     * Returns a view with the contact form
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show()
     {
-        return view('contacts');
+        return view('contacts.create');
     }
 
+    /**
+     * Validates and submits a new contact form.
+     * Sends an e-mail address if all went as expected.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:55',
+            'name' => 'required|string|max:60',
             'email' => 'required|email',
-            'message' => 'required',
-            'g-recaptcha-response' => 'required|captcha'
+            'message' => 'required|string|max:2000',
         ]);
 
-        $request = $request->only(['name', 'email', 'message']);
-
-        $name = $request['name'];
+        $name = $request->get('name');
 
         $contactMessage = ContactMessage::create([
             'name' => $name,
-            'email' => $request['email'],
-            'message' => $request['message'],
+            'email' => $request->get('email'),
+            'message' => $request->get('message'),
         ]);
 
-        Mail::to(config('mail.to')['address'])->send(new ContactSubmitted($contactMessage));
+        $recipientAddress = config('mail.to')['address'];
 
-        return redirect('/')->with('success', "Obrigado $name! A tua mensagem foi enviada com sucesso!");
+        if ($recipientAddress && (config('mail.status') || app()->environment(['production']))) {
+            // Send e-mail to admin alerting about new contact
+            Mail::to($recipientAddress)->send(new ContactSubmitted($contactMessage));
+            Log::info('New e-mail sent.');
+        }
+
+        return redirect()->route('home')
+            ->with('success', "<p>Obrigado, $name!</p><p>A tua mensagem foi enviada com sucesso! Responderemos 
+                assim que possível.</p>");
     }
 }

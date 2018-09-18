@@ -15,11 +15,11 @@ class Spot extends Model
         'city',
         'country_id',
         'image',
-        'thumbnail_image',
         'website',
         'latitude',
         'longitude',
-        'is_approved'
+        'is_approved',
+        'is_featured',
     ];
 
     public function getRouteKeyName()
@@ -37,8 +37,18 @@ class Spot extends Model
         return ($imagePath ? asset("storage/$imagePath") : null);
     }
 
-    public function getThumbnailImageAttribute($thumbnailImagePath)
-    {
-        return ($thumbnailImagePath ? asset("storage/$thumbnailImagePath") : null);
+    /**
+     * Returns the 3 most recent Spots that have an image
+     * and are approved
+     *
+     * @param $query
+     * @param int $take
+     */
+    public function scopeMostRecent($query, $take = 3) {
+        $query->with('country')
+            ->where('is_approved', true)
+            ->where('image', '!=', null)
+            ->orderBy('created_at', 'desc')
+            ->take($take);
     }
 }

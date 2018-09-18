@@ -115,6 +115,12 @@ return array(
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'country' => 'país',
+        'address' => 'morada',
+        'name' => 'nome',
+        'image' => 'imagem',
+        'city' => 'cidade',
+    ],
 
 );

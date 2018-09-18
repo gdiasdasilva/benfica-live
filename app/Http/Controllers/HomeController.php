@@ -8,26 +8,29 @@ use App\Country;
 
 class HomeController extends Controller
 {
-
     /**
-     * Show the application dashboard.
+     * Show the application dashboard
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        $spots = Spot::with('country')->orderBy('created_at', 'desc')->get();
+        $recentSpots = Spot::mostRecent()->get();
 
-        $spotsCount = $spots->count();
-        $recentSpots = $spots->where('is_approved', true)->where('image', '!=', null)->take(3);
+        $spotsCount = Spot::count();
 
-        $countriesCount = Country::whereHas('spots', function($spot) {
+        $countriesCount = Country::whereHas('spots', function ($spot) {
             $spot->where('is_approved', true);
         })->count();
 
         return view('welcome', compact('recentSpots', 'spotsCount', 'countriesCount'));
     }
 
+    /**
+     * Show the about us page.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function about()
     {
         $countriesWithSpots = Country::whereHas('spots', function($spot) {

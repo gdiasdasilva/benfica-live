@@ -1,21 +1,25 @@
 @extends('layouts.app')
-
-@section('pageTitle', 'Spots')
-
+@section('pageTitle', 'Países')
 @section('content')
 
-<div class="row">
-    <div class="col-md-6 mx-auto">
-        <h2>Spots | Por país</h2>
-        <div class="list-group">
-            @foreach ($countries as $country)
-                <a href="{{ route('countries.show', $country->slug_pt) }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                    {{ $country->name_pt }} {{ $country->emoji }}
-                    <span class="badge badge-danger">{{ $country->spots_count }}</span>
-                </a>
-            @endforeach
+<section class="section countries-list">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-5 is-offset-3">
+                <h1 class="title is-1">Países</h1>
+                <h2 class="subtitle">Listagem de países com spots já adicionados</h2>
+                <div class="panel">
+                    @foreach ($countries as $country)
+                        <a class="panel-block" href="{{ route('countries.show', $country->slug_pt) }}">
+                            <span class="country-flag">{{ $country->emoji }}</span>
+                            <span>{{ $country->name_pt }}</span>
+                            <span class="tag is-danger">{{ $country->spots_count }}</span>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
 @endsection
