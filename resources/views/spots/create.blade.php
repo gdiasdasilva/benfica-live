@@ -42,7 +42,7 @@
                     <div class="field">
                         <label class="label">Cidade *</label>
                         <div class="control">
-                            <input class="input" type="text" placeholder="Ex: Barcelona"
+                            <input class="input" type="text" placeholder="Ex: Barcelona" maxlength="35"
                                    name="city" required value="{{ old('city') }}">
                         </div>
                     </div>

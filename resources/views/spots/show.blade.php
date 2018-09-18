@@ -57,9 +57,11 @@
                     @endif
                 </div>
             </div>
-            <div class="column is-6">
-                <google-map lat="{{ $spot->latitude }}" lng="{{ $spot->longitude }}"></google-map>
-            </div>
+            @if ($spot->latitude && $spot->longitude)
+                <div class="column is-6">
+                    <google-map lat="{{ $spot->latitude }}" lng="{{ $spot->longitude }}"></google-map>
+                </div>
+            @endif
         </div>
         <div class="columns">
             <div class="column is-4 is-offset-4">
