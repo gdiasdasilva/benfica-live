@@ -54,7 +54,7 @@
     </div>
 </section>
 
-<section class="submit-new-spot">
+<section class="section submit-new-spot">
     <div class="container">
         <div class="columns">
             <div class="column is-4 is-offset-4">
