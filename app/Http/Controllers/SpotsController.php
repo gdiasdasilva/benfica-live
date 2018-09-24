@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Spot;
+use App\Country;
 use App\Mail\SpotSubmitted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,14 +21,14 @@ class SpotsController extends Controller
      */
     public function create()
     {
-        $countries = DB::table('countries')
+        $minutes = 525600; // One year
+        
+        $countries = Cache::remember('countries', $minutes, function () {
+            return Country::whereIn('continent_id', [2, 3, 6, 7])
             ->select('id', 'name_pt')
-            ->where('continent_id', 2)
-            ->orWhere('continent_id', 3)
-            ->orWhere('continent_id', 6)
-            ->orWhere('continent_id', 7)
             ->orderBy('name_pt', 'asc')
             ->get();
+        });
 
         return view('spots.create', compact('countries'));
     }
