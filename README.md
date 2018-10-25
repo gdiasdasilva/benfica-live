@@ -21,18 +21,12 @@ Some screens of the web app are shared below:
 
 ---
 
-#### Homepage
+#### Featured spots
 
-<img src="https://i.imgur.com/OfFHRCg.png"/>
+<img src="https://i.imgur.com/JotSZxR.png"/>
 
 ---
 
 #### Countries listing
 
-<img src="https://i.imgur.com/abVrijA.png"/>
-
----
-
-#### Other pages
-
-<img src="https://i.imgur.com/ID8zwVg.png"/>
+<img src="https://i.imgur.com/KjXHnC4.png"/>
