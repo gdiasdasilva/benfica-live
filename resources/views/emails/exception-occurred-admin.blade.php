@@ -1,11 +1,9 @@
 @component('mail::message')
-# Excepção
-
-Ocorreu um erro!
+# Ocorreu um erro!
 
 Detalhes da excepção:
 
-***
+*{{ $exception->getMessage() }}*
 
-{{ $exception->getMessage() }}
+Verifique o ficheiro de log para mais detalhes.
 @endcomponent
