@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Exception;
+use App\Mail\ExceptionOccurred;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -36,6 +38,10 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        if ($this->shouldReport($exception)) {
+            $this->sendEmail($exception);
+        }
+
         parent::report($exception);
     }
 
@@ -49,5 +55,17 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
+    }
+
+    /**
+     * Send an email to the administrator with the exception.
+     *
+     * @param  \Exception  $exception
+     * @return void
+     */
+    public function sendEmail(Exception $exception)
+    {
+        Mail::to(config('benficalive.administrator_email'))
+            ->send(new ExceptionOccurred($exception));
     }
 }
