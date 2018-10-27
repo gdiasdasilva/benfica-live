@@ -29,19 +29,13 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required|string|max:60',
             'email' => 'required|email',
             'message' => 'required|string|max:2000',
         ]);
 
-        $name = $request->get('name');
-
-        $contactMessage = ContactMessage::create([
-            'name' => $name,
-            'email' => $request->get('email'),
-            'message' => $request->get('message'),
-        ]);
+        $contactMessage = ContactMessage::create($data);
 
         $recipientAddress = config('mail.to')['address'];
 
