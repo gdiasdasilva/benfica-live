@@ -15,7 +15,7 @@ Current stack:
 * Vue.js
 * Sass
 
-Feel free to give us feedback and/or contribute directly to the project! Beit on the frontend or backend.
+Feel free to give us feedback and/or contribute directly to the project! Be it on the frontend or backend.
 
 Some screens of the web app are shared below:
 
