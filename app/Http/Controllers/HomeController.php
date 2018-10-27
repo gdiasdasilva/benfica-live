@@ -9,7 +9,7 @@ use App\Country;
 class HomeController extends Controller
 {
     /**
-     * Show the application dashboard
+     * Show the application homepage
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
