@@ -63,13 +63,11 @@
                 </div>
             @endif
         </div>
-        <div class="columns">
-            <div class="column is-4 is-offset-4">
-                <a class="button is-danger is-fullwidth" href="{{ route('countries.show', $spot->country->slug_pt) }}">
-                    <span class="icon"><i class="fa fa-globe"></i></span>
-                    <span>Ver mais em {{ $spot->country->name_pt }}</span>
-                </a>
-            </div>
+        <div class="section see-more-button has-text-centered">
+            <a class="button is-danger" href="{{ route('countries.show', $spot->country->slug_pt) }}">
+                <span class="icon"><i class="fa fa-globe"></i></span>
+                <span>Ver mais em {{ $spot->country->name_pt }}</span>
+            </a>
         </div>
 
         @if ($spot->image)
