@@ -1,0 +1,39 @@
+@media screen and (max-width: 1087px) {
+  .navbar-menu {
+      .navbar-end {
+          .navbar-item {
+              a {
+                  padding-bottom: 32px;
+                  &.button {
+                      background-color: $danger;
+                  }
+              }
+          }
+      }
+  }
+}
+
+.is-homepage {
+  @extend .is-transparent;
+  @extend .is-shadowless;
+  background-color: transparent;
+
+  @media screen and (min-width: 1087px) {
+    a, .navbar-burger {
+      color: white;
+    }
+
+    .navbar-end .navbar-item a:hover {
+      color: $danger !important;
+      background-color: white !important;
+    }
+  }
+
+  &.navbar {
+      &:not(.is-active) {
+        .navbar-item, .navbar-burger {
+          color: white;
+        }
+      }
+  }
+}

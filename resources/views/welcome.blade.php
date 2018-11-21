@@ -2,6 +2,19 @@
 @section('pageTitle', 'Início')
 @section('content')
 
+<section class="hero homepage-hero is-danger is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Partilha os teus spots favoritos...
+      </h1>
+      <h2 class="subtitle">
+        E assiste a jogos no estrangeiro!
+      </h2>
+    </div>
+  </div>
+</section>
+
 <section class="section introductory-text">
     <div class="container">
         <div class="columns">
