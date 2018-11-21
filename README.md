@@ -21,6 +21,12 @@ Some screens of the web app are shared below:
 
 ---
 
+#### Homepage
+
+<img src="https://i.imgur.com/JZzMTulr.png"/>
+
+---
+
 #### Featured spots
 
 <img src="https://i.imgur.com/JotSZxR.png"/>
