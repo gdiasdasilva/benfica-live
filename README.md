@@ -1,7 +1,7 @@
 <img src="https://i.imgur.com/T0Gc1LV.png">
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gdiasdasilva/benfica-live/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/gdiasdasilva/benfica-live/?branch=develop)
-[![Build Status](https://scrutinizer-ci.com/g/gdiasdasilva/benfica-live/badges/build.png?b=develop)](https://scrutinizer-ci.com/g/gdiasdasilva/benfica-live/build-status/develop)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gdiasdasilva/benfica-live/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/gdiasdasilva/benfica-live/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/gdiasdasilva/benfica-live/badges/build.png?b=master)](https://scrutinizer-ci.com/g/gdiasdasilva/benfica-live/build-status/master)
 
 <a href="https://benfica.live" target="_blank">benfica.live</a> is a platform created to gather data that otherwise would be too dispersed.
 
