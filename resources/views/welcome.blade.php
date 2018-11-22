@@ -68,17 +68,13 @@
 </section>
 
 <section class="section submit-new-spot">
-    <div class="container">
-        <div class="columns">
-            <div class="column is-4 is-offset-4">
-                <a href="{{ route('spots.create') }}" class="button is-danger is-medium is-fullwidth">
-                    <span class="icon">
-                        <i class="fa fa-upload"></i>
-                    </span>
-                    <span>Sugerir um spot</span>
-                </a>
-            </div>
-        </div>
+    <div class="see-more-button has-text-centered">
+        <a href="{{ route('spots.create') }}" class="button is-danger is-medium">
+            <span class="icon">
+                <i class="fa fa-upload"></i>
+            </span>
+            <span>Sugerir um spot</span>
+        </a>
     </div>
 </section>
 
