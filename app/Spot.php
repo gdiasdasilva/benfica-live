@@ -44,7 +44,8 @@ class Spot extends Model
      * @param $query
      * @param int $take
      */
-    public function scopeMostRecent($query, $take = 3) {
+    public function scopeMostRecent($query, $take = 3)
+    {
         $query->with('country')
             ->where('is_approved', true)
             ->where('image', '!=', null)
@@ -52,7 +53,8 @@ class Spot extends Model
             ->take($take);
     }
 
-    public function scopeFeatured($query, $take = 3) {
+    public function scopeFeatured($query, $take = 3)
+    {
         $query->with('country')
             ->where('is_approved', true)
             ->orderBy('is_featured', 'desc')
