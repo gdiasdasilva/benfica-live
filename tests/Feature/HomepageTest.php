@@ -15,14 +15,24 @@ class HomepageTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-
-        //factory(Country::class, 20)->create();
-        //factory(Spot::class, 50)->create();
+        factory(Country::class, 5)->create();
+        factory(Spot::class, 15)->create();
     }
 
     /** @test */
-    public function it_fetches_three_most_recent_spots()
+    public function it_shows_featured_spots()
     {
-        $this->assertTrue(true);
+        $commonAttributes = [
+            'is_approved' => true,
+            'is_featured' => true
+        ];
+
+        $spot1 = create(Spot::class, $commonAttributes);
+        $spot2 = create(Spot::class, $commonAttributes);
+
+        $response = $this->get(route('home'));
+        $response->assertOk()
+            ->assertSee(e($spot1->name))
+            ->assertSee(e($spot2->name));
     }
 }

@@ -51,4 +51,12 @@ class Spot extends Model
             ->orderBy('created_at', 'desc')
             ->take($take);
     }
+
+    public function scopeFeatured($query, $take = 3) {
+        $query->with('country')
+            ->where('is_approved', true)
+            ->orderBy('is_featured', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->take($take);
+    }
 }

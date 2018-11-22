@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $recentSpots = Spot::mostRecent()->get();
+        $featuredSpots = Spot::featured()->get();
 
         $spotsCount = Spot::count();
 
@@ -23,7 +23,7 @@ class HomeController extends Controller
             $spot->where('is_approved', true);
         })->count();
 
-        return view('welcome', compact('recentSpots', 'spotsCount', 'countriesCount'));
+        return view('welcome', compact('featuredSpots', 'spotsCount', 'countriesCount'));
     }
 
     /**

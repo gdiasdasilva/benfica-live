@@ -32,9 +32,9 @@
 
 <section class="section featured-spots">
     <div class="container">
-        <h3 class="title">Destaques</h3>
+        <h3 class="title">Em destaque</h3>
         <div class="columns">
-            @foreach ($recentSpots as $spot)
+            @foreach ($featuredSpots as $spot)
                 <div class="column is-4">
                     <a href="{{ route('spots.show', ['countrySlug' => $spot->country->slug_pt, 'spotSlug' => $spot->slug]) }}">
                         <div class="card">
