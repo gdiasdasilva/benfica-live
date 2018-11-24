@@ -22,13 +22,16 @@ class ContactsTest extends TestCase
     /** @test */
     public function a_user_can_submit_a_new_valid_contact()
     {
-        $response = $this->call('POST', route('contacts.store'), [
+        $messageData = [
             'name' => $this->faker->name,
             'email' => $this->faker->email,
             'message' => $this->faker->text(1000)
-        ]);
+        ];
+
+        $response = $this->followingRedirects()->call('POST', route('contacts.store'), $messageData);
 
         $response->assertSessionHasNoErrors();
+        $response->assertOk()->assertSee(e($messageData['name']));
         $this->checkEmailSent(1);
     }
 

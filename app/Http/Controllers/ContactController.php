@@ -35,8 +35,8 @@ class ContactController extends Controller
             'message' => 'required|string|max:2000',
         ]);
 
+        $name = $request->get('name');
         $contactMessage = ContactMessage::create($data);
-
         $recipientAddress = config('mail.to')['address'];
 
         if ($recipientAddress && (config('mail.status') || app()->environment(['production']))) {
@@ -46,7 +46,7 @@ class ContactController extends Controller
         }
 
         return redirect()->route('home')
-            ->with('success', "<p>Obrigado, $name!</p><p>A tua mensagem foi enviada com sucesso! Responderemos 
+            ->with('success', "<p>Obrigado, $name!</p><p>A tua mensagem foi enviada com sucesso! Responderemos
                 assim que possível.</p>");
     }
 }
