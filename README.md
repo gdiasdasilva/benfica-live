@@ -27,12 +27,12 @@ Some screens of the web app are shared below:
 
 ---
 
-#### Featured spots
+#### Countries listing
 
 <img src="https://i.imgur.com/JotSZxR.png"/>
 
 ---
 
-#### Countries listing
+#### Featured spots
 
 <img src="https://i.imgur.com/KjXHnC4.png"/>
